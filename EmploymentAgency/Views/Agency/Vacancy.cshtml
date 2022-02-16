@@ -1,0 +1,79 @@
+﻿@model EmploymentAgency.Core.Objects.Vacancy
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div id="content">
+    <div class="post">
+        <div class="post-meta">
+            <div class="row">
+
+                <div class="vacancies-back">
+                    @Html.ActionLink("<- Вернуться к списку вакансий", "Vacancies")
+                </div>
+
+                <div class="post-title">
+                    <!--<h1>@Html.VacancyLink(Model)</h1>-->
+                    <h1>@Model.Name</h1>
+                </div>
+
+            </div>
+            <!--<div class="row">
+
+        <div class="posted-date">
+            Model.VacancyPostedOn.ToLocalTime()
+         </div>
+
+    </div>-->
+
+            <div class="post-salary">
+                З/п: @Model.Salary р.
+            </div>
+
+            <div class="post-company">
+                Компания: @Model.CompanyName
+            </div>
+
+            <div class="post-address">
+                @Model.Address
+            </div>
+
+            <div class="post-experience">
+                Опыт работы: @Model.RequiredWorkExperience
+            </div>
+
+            <div class="post-requirements">
+                Требования: @Model.Requirements
+            </div>
+
+            <div class="post-time-period">
+                @if (Model.TimePeriod != null)
+                {
+                    <p> Сроком на: @Model.TimePeriod</p>
+                }
+                else
+                {
+                    <p> Сроком на: не указано </p>
+                }
+            </div>
+
+            <div class="post-body">
+                Описание:<br />
+                @Html.Raw(Model.Description)
+            </div>
+
+            <br />
+
+            <div class="posted-date">
+                Вакансия опубликована @Model.VacancyPostedOn.ToLocalTime().ToLongDateString()
+            </div>
+
+            <div class="button-suitable-object">
+                @Html.CandidatesForVacancyLink(Model)
+            </div>
+
+            <br />
+        </div>
+    </div>
+</div>

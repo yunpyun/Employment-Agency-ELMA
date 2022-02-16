@@ -1,0 +1,24 @@
+﻿@model EmploymentAgency.Models.ListVacanciesViewModel
+
+
+<div id="content">
+
+    <h1>@ViewBag.Title</h1>
+
+    @Html.Partial("_CandidatePager", Model)
+
+    @if (Model.Candidates.Count > 0)
+    {
+        foreach (var candidate in Model.Candidates)
+        {
+            @Html.Partial("_CandidateTemplate", candidate)
+        }
+    }
+    else
+    {
+        <p>Резюме не найдены!</p>
+    }
+
+    @Html.Partial("_CandidatePager", Model)
+
+</div>

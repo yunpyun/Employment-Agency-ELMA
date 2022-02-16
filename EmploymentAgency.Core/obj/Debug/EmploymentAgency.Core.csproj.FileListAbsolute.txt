@@ -1,0 +1,48 @@
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\EmploymentAgency.Core.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\EmploymentAgency.Core.pdb
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Antlr3.Runtime.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\FluentNHibernate.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Iesi.Collections.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\NHibernate.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.Web.Common.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.EagerFetching.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Antlr3.Runtime.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\FluentNHibernate.pdb
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\FluentNHibernate.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Iesi.Collections.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\NHibernate.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.Web.Common.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.EagerFetching.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.csproj.AssemblyReference.cache
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.csproj.CoreCompileInputs.cache
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.csproj.CopyComplete
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.pdb
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\EmploymentAgency.Core.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\EmploymentAgency.Core.pdb
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Antlr3.Runtime.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\FluentNHibernate.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Iesi.Collections.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\NHibernate.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.Web.Common.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.EagerFetching.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Antlr3.Runtime.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\FluentNHibernate.pdb
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\FluentNHibernate.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Iesi.Collections.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\NHibernate.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Ninject.Web.Common.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\bin\Debug\Remotion.Linq.EagerFetching.xml
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.csproj.AssemblyReference.cache
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.csproj.CoreCompileInputs.cache
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.csproj.CopyComplete
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.dll
+C:\Users\Выймова Елена\Desktop\Материалы для работы\ПП\Тестовое задание\Проект с авторизацией\EmploymentAgency\EmploymentAgency.Core\obj\Debug\EmploymentAgency.Core.pdb

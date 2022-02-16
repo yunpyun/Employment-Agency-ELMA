@@ -1,0 +1,67 @@
+﻿@model EmploymentAgency.Core.Objects.Candidate
+
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div id="content">
+    <div class="post">
+        <div class="post-meta">
+            <div class="row">
+
+                <div class="vacancies-back">
+                    @Html.ActionLink("<- Вернуться к списку резюме", "Candidates")
+                </div>
+
+                <div class="post-title">
+                    <!--<h1>@Html.CandidateLink(Model)</h1>-->
+                    <h1>@Model.Title</h1>
+                </div>
+
+            </div>
+
+
+            <div class="post-fullname">
+                @if (Model.MiddleName != null)
+                {
+                    <p> @Model.LastName @Model.FirstName @Model.MiddleName</p>
+                }
+                else
+                {
+                    <p> @Model.LastName @Model.FirstName </p>
+                }
+            </div>
+
+            <div class="post-birthday">
+                Дата рождения: @Model.Birthday.ToShortDateString()
+            </div>
+
+            <div class="post-experience">
+                Опыт работы: @Model.WorkExperience
+            </div>
+
+            <br />
+            <div class="post-body">
+                Описание:<br />
+                @Html.Raw(Model.Description)
+            </div>
+
+            <br />
+            <div class="post-contacts">
+                Контакты:
+                <br />Телефон: @Model.Phone
+                <br />E-mail: @Model.Email
+            </div>
+
+            <div class="posted-date">
+                Резюме опубликовано @Model.CandidatePostedOn.ToLocalTime().ToLongDateString()
+            </div>
+
+            <div class="button-suitable-object">
+                @Html.VacanciesForCandidateLink(Model)
+            </div>
+
+            <br />
+        </div>
+    </div>
+</div>

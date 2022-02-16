@@ -1,0 +1,53 @@
+﻿@model EmploymentAgency.Core.Objects.Vacancy
+
+@{
+    var check_description = Model.Description.Length >= 200 ? true : false;
+}
+
+<div class="post">
+    <div class="post-meta">
+        <div class="row">
+
+            <!--Heading-->
+            <div class="vacancy-title">
+                <h2>@Html.VacancyLink(Model)</h2>
+            </div>
+
+        </div>
+
+        <div class="row">
+
+            <!--Posted date-->
+            <div class="posted-date-main">
+                @Model.VacancyPostedOn.ToLocalTime().ToLongDateString()
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Short Description-->
+    <div class="post-body-main">
+        @if (check_description == true)
+        {
+            @Html.Raw(Model.Description.Substring(0, 200))
+        }
+        else
+        {
+            @Html.Raw(Model.Description)
+        }
+    </div>
+
+    <div class="post-foot">
+        @Html.ActionLink("Подробнее...", "vacancy", "agency",
+            new
+            {
+                year = Model.VacancyPostedOn.Year,
+                month = Model.VacancyPostedOn.Month,
+                day = Model.VacancyPostedOn.Day,
+                title = Model.Name
+            },
+            new { title = "continue..." }
+        )
+    </div>
+</div>

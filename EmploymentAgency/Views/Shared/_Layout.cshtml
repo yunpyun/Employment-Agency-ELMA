@@ -1,0 +1,62 @@
+﻿@using System.Configuration
+
+@{ var action = ((string)ViewContext.RouteData.Values["Action"]).ToLower();
+    }
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css"
+          href="@Url.Content("~/Content/themes/simple/style.css?v=@DateTime.Now.Millisecond")" />
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
+
+</head>
+
+<body>
+    <div id="main">
+
+        <!-- Header -->
+        <div id="header">
+            <div id="logo">
+                <div id="logo_text">
+                    <h1><a href="/">Employment<span class="logo_colour">Agency</span></a></h1>
+                    <h2>Работа для каждого</h2>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @Html.ActionLink("Выйти из аккаунта", "Logout", "Home")            
+                    }
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div id="menubar">
+                <ul id="menu">
+                    <li class="@(new[] { "vacancies", "vacancy", "vacanciesforcandidate", "createvacancy", "vacanciessort"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Вакансии", "Vacancies")</li>
+                    <li class="@(new[] { "candidates", "candidate", "candidatesforvacancy"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Резюме", "Candidates")</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Site Content -->
+        <div id="site_content">
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            Copyright © @DateTime.Now.Year EmploymentAgency All Rights Reserved
+        </div>
+    </div>
+</body>
+</html>
