@@ -24,14 +24,14 @@ namespace EmploymentAgency
               "Logout",
               "Logout",
               new { controller = "Home", action = "Logout" }
-            );
+            );*/
 
             routes.MapRoute(
                 "HomeAction",
                 "Home/{action}",
                 new { controller = "Home", action = "Login" }
                 );
-            */
+            
 
             // default route
             routes.MapRoute(

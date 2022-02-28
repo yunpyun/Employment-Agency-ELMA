@@ -9,14 +9,9 @@ using EmploymentAgency.Models;
 
 namespace EmploymentAgency.Controllers
 {
+    [Authorize]
     public class AgencyController : Controller
     {
-        // GET: Agency
-        /*public ActionResult Index()
-        {
-            return View();
-        }*/
-
         private readonly IAgencyRepository _agencyRepository;
 
         public AgencyController(IAgencyRepository agencyRepository)

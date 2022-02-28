@@ -9,6 +9,7 @@ using System.Web.Security;
 
 namespace EmploymentAgency.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IAgencyRepository _agencyRepository;
@@ -37,11 +38,13 @@ namespace EmploymentAgency.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View("Login");
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
