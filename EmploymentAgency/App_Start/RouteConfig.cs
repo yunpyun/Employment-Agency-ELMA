@@ -13,29 +13,20 @@ namespace EmploymentAgency
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            /*routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Agency", action = "Vacancies", id = UrlParameter.Optional }
-            );*/
-
-            /*
             routes.MapRoute(
-              "Logout",
-              "Logout",
-              new { controller = "Home", action = "Logout" }
-            );*/
-
-            routes.MapRoute(
-                "HomeAction",
-                "Home/{action}",
+                "Login",
+                "Account/Login",
                 new { controller = "Home", action = "Login" }
                 );
-            
 
-            // default route
             routes.MapRoute(
-                "Action",
+                "Logout",
+                "Logout",
+                new { controller = "Home", action = "Logout" }
+                );
+
+            routes.MapRoute(
+                "Default",
                 "{action}",
                 new { controller = "Agency", action = "Vacancies" }
             );
