@@ -9,18 +9,18 @@ namespace EmploymentAgency.Models
 {
     public class ListVacanciesViewModel
     {
-        public ListVacanciesViewModel(IAgencyRepository _agencyRepository, int p)
+        public ListVacanciesViewModel(IAgencyRepository _agencyRepository, int pageNo)
         {
-            Vacancies = _agencyRepository.Vacancies(p - 1, 10);
+            Vacancies = _agencyRepository.Vacancies(pageNo - 1, 10);
             TotalVacancies = _agencyRepository.TotalVacancies();
 
-            Candidates = _agencyRepository.Candidates(p - 1, 10);
+            Candidates = _agencyRepository.Candidates(pageNo - 1, 10);
             TotalCandidates = _agencyRepository.TotalCandidates();
         }
 
-        public ListVacanciesViewModel(IAgencyRepository _agencyRepository, int p, string sortColumn, bool sortByAscending)
+        public ListVacanciesViewModel(IAgencyRepository _agencyRepository, int pageNo, string sortColumn, bool sortByAscending)
         {
-            Vacancies = _agencyRepository.Vacancies(p - 1, 10, sortColumn, sortByAscending);
+            Vacancies = _agencyRepository.Vacancies(pageNo - 1, 10, sortColumn, sortByAscending);
             TotalVacancies = _agencyRepository.TotalVacancies();
         }
 

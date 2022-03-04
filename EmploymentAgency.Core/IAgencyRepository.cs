@@ -17,9 +17,7 @@ namespace EmploymentAgency.Core
         int TotalCandidates();
         Candidate Candidate(int year, int month, string title);
 
-        int AddVacancy(Vacancy vacancy);
-
-        void AddVacancyMSSQL(Vacancy vacancy);
+        void AddVacancy(Vacancy vacancy);
 
         IList<Candidate> CandidatesForVacancy(string workExperience, string requirements, int pageNo, int pageSize);
         int TotalCandidatesForVacancy(string workExperience, string requirements);

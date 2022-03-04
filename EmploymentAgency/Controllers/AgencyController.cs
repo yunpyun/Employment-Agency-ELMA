@@ -19,9 +19,9 @@ namespace EmploymentAgency.Controllers
             _agencyRepository = agencyRepository;
         }
 
-        public ViewResult Vacancies(int p = 1)
+        public ViewResult Vacancies(int pageNo = 1)
         {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, p);
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, pageNo);
 
             ViewBag.Title = "Свежие вакансии";
             return View("List", viewModel);
@@ -37,9 +37,9 @@ namespace EmploymentAgency.Controllers
             return View(vacancy);
         }
 
-        public ViewResult Candidates(int p = 1)
+        public ViewResult Candidates(int pageNo = 1)
         {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, p);
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, pageNo);
 
             ViewBag.Title = "Свежие резюме";
             return View("ListCandidates", viewModel);
@@ -63,20 +63,18 @@ namespace EmploymentAgency.Controllers
         [HttpPost]
         public ActionResult CreateVacancy(Vacancy vacancy)
         {
-            /*var id = _agencyRepository.AddVacancy(vacancy);*/
-
             if (ModelState.IsValid)
             {
-                _agencyRepository.AddVacancyMSSQL(vacancy);
+                _agencyRepository.AddVacancy(vacancy);
 
                 return RedirectToAction("Vacancies");
             }
             return View();
         }
 
-        public ViewResult CandidatesForVacancy(string workExperience, string requirements, int year, int month, string title, int p = 1)
+        public ViewResult CandidatesForVacancy(string workExperience, string requirements, int year, int month, string title, int pageNo = 1)
         {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, p, "Резюме");
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, pageNo, "Резюме");
 
             if (viewModel.Vacancy == null)
                 throw new HttpException(404, "Vacancy not found");
@@ -86,9 +84,9 @@ namespace EmploymentAgency.Controllers
             return View("ListCandidates", viewModel);
         }
 
-        public ViewResult VacanciesForCandidate(string workExperience, string requirements, int year, int month, string title, int p = 1)
+        public ViewResult VacanciesForCandidate(string workExperience, string requirements, int year, int month, string title, int pageNo = 1)
         {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, p, "Вакансии");
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, pageNo, "Вакансии");
 
             if (viewModel.Candidate == null)
                 throw new HttpException(404, "Candidate not found");
@@ -98,9 +96,9 @@ namespace EmploymentAgency.Controllers
             return View("List", viewModel);
         }
 
-        public ViewResult VacanciesSort(string sortColumn, bool sortByAscending, int p = 1)
+        public ViewResult VacanciesSort(string sortColumn, bool sortByAscending, int pageNo = 1)
         {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, p, sortColumn, sortByAscending);
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, pageNo, sortColumn, sortByAscending);
 
             ViewBag.Title = "Свежие вакансии";
             return View("List", viewModel);

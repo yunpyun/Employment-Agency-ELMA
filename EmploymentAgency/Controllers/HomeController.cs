@@ -19,25 +19,6 @@ namespace EmploymentAgency.Controllers
             _agencyRepository = agencyRepository;
         }
 
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         [AllowAnonymous]
         public ActionResult Login()
         {
@@ -69,7 +50,7 @@ namespace EmploymentAgency.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return View("Login");
+            return RedirectToAction("Login");
         }
     }
 }
