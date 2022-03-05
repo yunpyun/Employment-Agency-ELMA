@@ -64,6 +64,8 @@ namespace EmploymentAgency.App_Start
         {
             kernel.Load(new RepositoryModule());
             kernel.Bind<IAgencyRepository>().To<AgencyRepository>();
+            kernel.Bind<IAgencyRepositoryCandidate>().To<AgencyRepositoryCandidate>();
+            kernel.Bind<IAgencyRepositoryUser>().To<AgencyRepositoryUser>();
         }        
     }
 }

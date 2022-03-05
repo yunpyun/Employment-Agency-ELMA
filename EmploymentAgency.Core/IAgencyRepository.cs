@@ -13,20 +13,13 @@ namespace EmploymentAgency.Core
         int TotalVacancies();
         Vacancy Vacancy(int year, int month, string title);
 
-        IList<Candidate> Candidates(int pageNo, int pageSize);
-        int TotalCandidates();
+        IList<Vacancy> VacanciesForCandidate(string workExperience, string requirements, int pageNo, int pageSize);
+        int TotalVacanciesForCandidate(string workExperience, string requirements);
         Candidate Candidate(int year, int month, string title);
+
+        IList<Vacancy> VacanciesSort(int pageNo, int pageSize, string sortColumn, bool sortByAscending);
 
         void AddVacancy(Vacancy vacancy);
 
-        IList<Candidate> CandidatesForVacancy(string workExperience, string requirements, int pageNo, int pageSize);
-        int TotalCandidatesForVacancy(string workExperience, string requirements);
-
-        IList<Vacancy> VacanciesForCandidate(string workExperience, string requirements, int pageNo, int pageSize);
-        int TotalVacanciesForCandidate(string workExperience, string requirements);
-
-        IList<Vacancy> Vacancies(int pageNo, int pageSize, string sortColumn, bool sortByAscending);
-
-        User User(string login, string pwd);
     }
 }

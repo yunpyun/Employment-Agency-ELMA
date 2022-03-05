@@ -12,11 +12,11 @@ namespace EmploymentAgency.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly IAgencyRepository _agencyRepository;
+        private readonly IAgencyRepositoryUser _agencyRepositoryUser;
 
-        public HomeController(IAgencyRepository agencyRepository)
+        public HomeController(IAgencyRepositoryUser agencyRepositoryUser)
         {
-            _agencyRepository = agencyRepository;
+            _agencyRepositoryUser = agencyRepositoryUser;
         }
 
         [AllowAnonymous]
@@ -30,7 +30,7 @@ namespace EmploymentAgency.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
-            var user_return = _agencyRepository.User(user.Email, user.Password);
+            var user_return = _agencyRepositoryUser.User(user.Email, user.Password);
             if (ModelState.IsValid)
             {
                 if (user_return != null)

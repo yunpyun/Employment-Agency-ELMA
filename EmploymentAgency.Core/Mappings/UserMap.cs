@@ -14,9 +14,9 @@ namespace EmploymentAgency.Core.Mappings
         {
             Id(x => x.IdUser);
 
-            Map(x => x.Email).Length(100).Not.Nullable();
+            Map(x => x.Email).Length(255).Not.Nullable();
 
-            Map(x => x.Password).Length(55).Not.Nullable();
+            Map(x => x.Password).Length(255).Not.Nullable();
         }
     }
 }

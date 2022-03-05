@@ -70,8 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgencyRepository.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="AgencyRepositoryCandidate.cs" />
+    <Compile Include="AgencyRepositoryUser.cs" />
     <Compile Include="IAgencyRepository.cs" />
+    <Compile Include="IAgencyRepositoryCandidate.cs" />
+    <Compile Include="IAgencyRepositoryUser.cs" />
     <Compile Include="Mappings\CandidateMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\VacancyMap.cs" />

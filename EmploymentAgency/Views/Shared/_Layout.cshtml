@@ -41,8 +41,8 @@
             <!-- Navigation -->
             <div id="menubar">
                 <ul id="menu">
-                    <li class="@(new[] { "vacancies", "vacancy", "vacanciesforcandidate", "createvacancy", "vacanciessort"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Вакансии", "Vacancies")</li>
-                    <li class="@(new[] { "candidates", "candidate", "candidatesforvacancy"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Резюме", "Candidates")</li>
+                    <li class="@(new[] { "vacancies", "vacancy", "vacanciesforcandidate", "createvacancy", "vacanciessort"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Вакансии", "Vacancies", "Agency")</li>
+                    <li class="@(new[] { "candidates", "candidate", "candidatesforvacancy"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Резюме", "Candidates", "AgencyCandidate")</li>
                 </ul>
             </div>
 

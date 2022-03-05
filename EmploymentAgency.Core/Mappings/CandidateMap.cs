@@ -14,27 +14,27 @@ namespace EmploymentAgency.Core.Mappings
         {
             Id(x => x.IdCandidate);
 
-            Map(x => x.FirstName).Length(50).Not.Nullable();
+            Map(x => x.FirstName).Length(255).Not.Nullable();
 
-            Map(x => x.MiddleName).Length(55);
+            Map(x => x.MiddleName).Length(255);
 
-            Map(x => x.LastName).Length(100).Not.Nullable();
+            Map(x => x.LastName).Length(255).Not.Nullable();
 
             Map(x => x.Birthday).Not.Nullable();
 
-            Map(x => x.WorkExperience).Length(100).Not.Nullable();
+            Map(x => x.WorkExperience).Length(255).Not.Nullable();
 
             Map(x => x.Photo);
 
-            Map(x => x.Phone).Length(50).Not.Nullable();
+            Map(x => x.Phone).Length(255).Not.Nullable();
 
-            Map(x => x.Email).Length(50).Not.Nullable(); ;
+            Map(x => x.Email).Length(255).Not.Nullable(); ;
 
             Map(x => x.CandidatePostedOn).Not.Nullable();
 
-            Map(x => x.Title).Length(100).Not.Nullable();
+            Map(x => x.Title).Length(255).Not.Nullable();
 
-            Map(x => x.Description).Length(4000).Not.Nullable();
+            Map(x => x.Description).Length(4096).Not.Nullable();
         }
     }
 }

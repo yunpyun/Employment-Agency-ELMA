@@ -28,7 +28,7 @@ namespace EmploymentAgency
 
         public static MvcHtmlString CandidateLink(this HtmlHelper helper, Candidate candidate)
         {
-            return helper.ActionLink(candidate.Title, "Candidate", "Agency",
+            return helper.ActionLink(candidate.Title, "Candidate", "AgencyCandidate",
                 new
                 {
                     year = candidate.CandidatePostedOn.Year,
@@ -43,7 +43,7 @@ namespace EmploymentAgency
 
         public static MvcHtmlString CandidatesForVacancyLink(this HtmlHelper helper, Vacancy vacancy)
         {
-            return helper.ActionLink("Показать подходящие резюме", "CandidatesForVacancy", "Agency", 
+            return helper.ActionLink("Показать подходящие резюме", "CandidatesForVacancy", "AgencyCandidate", 
                 new 
                 {
                     workExperience = vacancy.RequiredWorkExperience,
@@ -74,21 +74,6 @@ namespace EmploymentAgency
                     title = String.Format("See all candidates in {0}", candidate.Title)
                 });
         }
-
-        /*public static MvcHtmlString VacanciesSortTitleLink(this HtmlHelper helper)
-        {
-            return helper.ActionLink("Сортировать по имени (А-Я)", "VacanciesSort", "Agency",
-                new
-                {
-                    sortColumn = "Name",
-                    sortByAscending = true,
-                },
-                new
-                {
-                    title = String.Format("Сортировка по имени (А-Я)")
-                });
-        }*/
-
 
     }
 }

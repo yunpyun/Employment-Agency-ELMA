@@ -14,21 +14,21 @@ namespace EmploymentAgency.Core.Mappings
         {
             Id(x => x.IdVacancy);
 
-            Map(x => x.Name).Length(100).Not.Nullable();
+            Map(x => x.Name).Length(255).Not.Nullable();
 
-            Map(x => x.Description).Length(4000).Not.Nullable();
+            Map(x => x.Description).Length(4096).Not.Nullable();
 
-            Map(x => x.TimePeriod).Length(100);
+            Map(x => x.TimePeriod).Length(255);
 
-            Map(x => x.CompanyName).Length(200).Not.Nullable();
+            Map(x => x.CompanyName).Length(255).Not.Nullable();
 
-            Map(x => x.Requirements).Length(300).Not.Nullable();
+            Map(x => x.Requirements).Length(512).Not.Nullable();
 
             Map(x => x.Salary).Not.Nullable();
 
-            Map(x => x.RequiredWorkExperience).Length(100).Not.Nullable(); ;
+            Map(x => x.RequiredWorkExperience).Length(255).Not.Nullable(); ;
 
-            Map(x => x.Address).Length(300).Not.Nullable(); ;
+            Map(x => x.Address).Length(512).Not.Nullable(); ;
 
             Map(x => x.VacancyPostedOn).Not.Nullable();
         }

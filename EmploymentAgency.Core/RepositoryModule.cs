@@ -27,6 +27,7 @@ namespace EmploymentAgency.Core
                         .Database(MsSqlConfiguration.MsSql2008.ConnectionString(c => c.FromConnectionStringWithKey("EmploymentAgencyDbConnString")))
                         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Vacancy>())
                         //.ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(false, true, false))
+                        .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(false, true))
                         .BuildConfiguration()
                         .BuildSessionFactory()
                 )

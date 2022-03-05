@@ -37,22 +37,24 @@ namespace EmploymentAgency.Controllers
             return View(vacancy);
         }
 
-        public ViewResult Candidates(int pageNo = 1)
+        public ViewResult VacanciesForCandidate(string workExperience, string requirements, int year, int month, string title, int pageNo = 1)
         {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, pageNo);
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, pageNo);
 
-            ViewBag.Title = "Свежие резюме";
-            return View("ListCandidates", viewModel);
+            if (viewModel.Candidate == null)
+                throw new HttpException(404, "Candidate not found");
+
+            ViewBag.Title = String.Format(@"Подходящие вакансии к резюме ""{0}""",
+                                viewModel.Candidate.Title);
+            return View("List", viewModel);
         }
 
-        public ViewResult Candidate(int year, int month, string title)
+        public ViewResult VacanciesSort(string sortColumn, bool sortByAscending, int pageNo = 1)
         {
-            var candidate = _agencyRepository.Candidate(year, month, title);
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, pageNo, sortColumn, sortByAscending);
 
-            if (candidate == null)
-                throw new HttpException(404, "Вакансия не найдена");
-
-            return View(candidate);
+            ViewBag.Title = "Свежие вакансии";
+            return View("List", viewModel);
         }
 
         public ViewResult CreateVacancy()
@@ -71,38 +73,5 @@ namespace EmploymentAgency.Controllers
             }
             return View();
         }
-
-        public ViewResult CandidatesForVacancy(string workExperience, string requirements, int year, int month, string title, int pageNo = 1)
-        {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, pageNo, "Резюме");
-
-            if (viewModel.Vacancy == null)
-                throw new HttpException(404, "Vacancy not found");
-
-            ViewBag.Title = String.Format(@"Подходящие резюме к вакансии ""{0}""",
-                                viewModel.Vacancy.Name);
-            return View("ListCandidates", viewModel);
-        }
-
-        public ViewResult VacanciesForCandidate(string workExperience, string requirements, int year, int month, string title, int pageNo = 1)
-        {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, pageNo, "Вакансии");
-
-            if (viewModel.Candidate == null)
-                throw new HttpException(404, "Candidate not found");
-
-            ViewBag.Title = String.Format(@"Подходящие вакансии к резюме ""{0}""",
-                                viewModel.Candidate.Title);
-            return View("List", viewModel);
-        }
-
-        public ViewResult VacanciesSort(string sortColumn, bool sortByAscending, int pageNo = 1)
-        {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, pageNo, sortColumn, sortByAscending);
-
-            ViewBag.Title = "Свежие вакансии";
-            return View("List", viewModel);
-        }
-
     }
 }

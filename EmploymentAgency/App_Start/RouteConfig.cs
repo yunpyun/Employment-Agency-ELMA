@@ -26,10 +26,16 @@ namespace EmploymentAgency
                 );
 
             routes.MapRoute(
+                "CandidateAction",
+                "AgencyCandidate/{action}",
+                new { controller = "AgencyCandidate", action = "Candidates" }
+                );
+
+            routes.MapRoute(
                 "Default",
                 "{action}",
                 new { controller = "Agency", action = "Vacancies" }
-            );
+                );
         }
     }
 }
