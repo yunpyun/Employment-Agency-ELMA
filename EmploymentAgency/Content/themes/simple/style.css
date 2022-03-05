@@ -480,6 +480,7 @@ table {
     .form-group .form-control {
         width: 50%;
         height: 25px;
+        padding: 5px;
     }
 
     .form-group .text-danger {
@@ -487,8 +488,12 @@ table {
     }
 
     .form-group .form-control-description {
+        font-size: 130%;
         width: 50%;
         height: 150px;
+        padding: 5px;
+        overflow-y: scroll;
+        resize: none;
     }
 
 

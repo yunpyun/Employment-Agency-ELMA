@@ -21,6 +21,7 @@ namespace EmploymentAgency.Core.Objects
         [Required(ErrorMessage = "Поле \"Описание вакансии\" обязательно к заполнению")]
         [StringLength(4000, MinimumLength = 10, ErrorMessage = "В поле \"Описание вакансии\" должно быть не менее 10 и не более 4000 символов")]
         [Display(Name = "Описание вакансии*")]
+        [DataType(DataType.MultilineText)]
         public virtual string Description
         { get; set; }
 
