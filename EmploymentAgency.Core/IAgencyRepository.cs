@@ -19,7 +19,10 @@ namespace EmploymentAgency.Core
 
         IList<Vacancy> VacanciesSort(int pageNo, int pageSize, string sortColumn, bool sortByAscending);
 
-        void AddVacancy(Vacancy vacancy);
+        IList<Vacancy> MyVacancies(int pageNo, int pageSize, string username);
+        int TotalMyVacancies(string username);
+
+        void AddVacancy(Vacancy vacancy, string username);
 
     }
 }

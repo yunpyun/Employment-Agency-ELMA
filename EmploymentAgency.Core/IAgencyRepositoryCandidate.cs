@@ -17,5 +17,8 @@ namespace EmploymentAgency.Core
         int TotalCandidatesForVacancy(string workExperience, string requirements);
         Vacancy Vacancy(int year, int month, string title);
 
+        IList<Candidate> MyCandidates(int pageNo, int pageSize, string username);
+        int TotalMyCandidates(string username);
+
     }
 }

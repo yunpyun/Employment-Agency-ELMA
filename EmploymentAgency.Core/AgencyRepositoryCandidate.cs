@@ -29,6 +29,7 @@ namespace EmploymentAgency.Core
                                   .OrderByDescending(c => c.CandidatePostedOn)
                                   .Skip(pageNo * pageSize)
                                   .Take(pageSize)
+                                  .Fetch(c => c.Author)
                                   .ToList();
 
             return candidates;
@@ -54,6 +55,7 @@ namespace EmploymentAgency.Core
                                 .OrderByDescending(c => c.CandidatePostedOn)
                                 .Skip(pageNo * pageSize)
                                 .Take(pageSize)
+                                .Fetch(c => c.Author)
                                 .ToList();
 
             return candidates;
@@ -72,6 +74,38 @@ namespace EmploymentAgency.Core
                                 .Where(v => v.VacancyPostedOn.Year == year && v.VacancyPostedOn.Month == month && v.Name.Equals(title));
 
             return query.ToFuture().Single();
+        }
+
+        public IList<Candidate> MyCandidates(int pageNo, int pageSize, string username)
+        {
+            int userId;
+            var query = _session.Query<User>()
+                                .Where(u => u.Email.Equals(username));
+
+            userId = query.ToFuture().Single().IdUser;
+
+            var candidates = _session.Query<Candidate>()
+                                  .Where(c => c.Author.IdUser == userId)
+                                  .OrderByDescending(c => c.CandidatePostedOn)
+                                  .Skip(pageNo * pageSize)
+                                  .Take(pageSize)
+                                  .Fetch(c => c.Author)
+                                  .ToList();
+
+            return candidates;
+        }
+
+        public int TotalMyCandidates(string username)
+        {
+            int userId;
+            var query = _session.Query<User>()
+                                .Where(u => u.Email.Equals(username));
+
+            userId = query.ToFuture().Single().IdUser;
+
+            return _session.Query<Candidate>()
+                        .Where(c => c.Author.IdUser == userId)
+                        .Count();
         }
     }
 }

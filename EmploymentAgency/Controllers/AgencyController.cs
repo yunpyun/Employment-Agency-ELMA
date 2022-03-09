@@ -57,6 +57,16 @@ namespace EmploymentAgency.Controllers
             return View("List", viewModel);
         }
 
+        public ViewResult MyVacancies(int pageNo = 1)
+        {
+            string username = System.Web.HttpContext.Current.User.Identity.Name;
+
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, pageNo, username);
+
+            ViewBag.Title = "Мои вакансии";
+            return View("List", viewModel);
+        }
+
         public ViewResult CreateVacancy()
         {
             return View();
@@ -65,9 +75,11 @@ namespace EmploymentAgency.Controllers
         [HttpPost]
         public ActionResult CreateVacancy(Vacancy vacancy)
         {
+            string username = System.Web.HttpContext.Current.User.Identity.Name;
+
             if (ModelState.IsValid)
             {
-                _agencyRepository.AddVacancy(vacancy);
+                _agencyRepository.AddVacancy(vacancy, username);
 
                 return RedirectToAction("Vacancies");
             }

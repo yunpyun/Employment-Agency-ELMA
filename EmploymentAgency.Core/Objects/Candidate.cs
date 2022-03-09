@@ -43,5 +43,8 @@ namespace EmploymentAgency.Core.Objects
 
         public virtual string Description
         { get; set; }
+
+        public virtual User Author
+        { get; set; }
     }
 }

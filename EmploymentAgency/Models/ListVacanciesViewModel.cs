@@ -29,6 +29,12 @@ namespace EmploymentAgency.Models
                 Candidate = _agencyRepository.Candidate(year, month, title);
         }
 
+        public ListVacanciesViewModel(IAgencyRepository _agencyRepository, int pageNo, string username)
+        {
+            Vacancies = _agencyRepository.MyVacancies(pageNo - 1, 10, username);
+            TotalVacancies = _agencyRepository.TotalMyVacancies(username);
+        }
+
         public IList<Vacancy> Vacancies { get; private set; }
         public int TotalVacancies { get; private set; }
 

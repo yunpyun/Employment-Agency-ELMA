@@ -29,6 +29,7 @@ namespace EmploymentAgency.Core
                                   .OrderByDescending(v => v.VacancyPostedOn)
                                   .Skip(pageNo * pageSize)
                                   .Take(pageSize)
+                                  .Fetch(v => v.Author)
                                   .ToList();
 
             return vacancies;
@@ -54,6 +55,7 @@ namespace EmploymentAgency.Core
                                 .OrderByDescending(v => v.VacancyPostedOn)
                                 .Skip(pageNo * pageSize)
                                 .Take(pageSize)
+                                .Fetch(v => v.Author)
                                 .ToList();
 
             return vacancies;
@@ -82,6 +84,7 @@ namespace EmploymentAgency.Core
             vacancies = _session.Query<Vacancy>()
                                         .Skip(pageNo * pageSize)
                                         .Take(pageSize)
+                                        .Fetch(v => v.Author)
                                         .ToList();
 
             switch (sortColumn)
@@ -103,15 +106,53 @@ namespace EmploymentAgency.Core
             return vacancies;
         }
 
-        public void AddVacancy(Vacancy vacancy)
+        public IList<Vacancy> MyVacancies(int pageNo, int pageSize, string username)
         {
-            AddVacancyMSSQL(vacancy);
+            int userId;
+            var query = _session.Query<User>()
+                                .Where(u => u.Email.Equals(username));
+
+            userId = query.ToFuture().Single().IdUser;
+
+            var vacancies = _session.Query<Vacancy>()
+                                  .Where(v => v.Author.IdUser == userId)
+                                  .OrderByDescending(v => v.VacancyPostedOn)
+                                  .Skip(pageNo * pageSize)
+                                  .Take(pageSize)
+                                  .Fetch(v => v.Author)
+                                  .ToList();
+
+            return vacancies;
+        }
+
+        public int TotalMyVacancies(string username)
+        {
+            int userId;
+            var query = _session.Query<User>()
+                                .Where(u => u.Email.Equals(username));
+
+            userId = query.ToFuture().Single().IdUser;
+
+            return _session.Query<Vacancy>()
+                        .Where(v => v.Author.IdUser == userId)
+                        .Count();
+        }
+
+        public void AddVacancy(Vacancy vacancy, string username)
+        {
+            AddVacancyMSSQL(vacancy, username);
         }
 
         // создание вакансии с помощью вызова хранимой процедуры из БД
-        private void AddVacancyMSSQL(Vacancy vacancy)
+        private void AddVacancyMSSQL(Vacancy vacancy, string username)
         {
-            _session.CreateSQLQuery("exec proc_AddVacancy :pVacancyName, :pDescription, :pTimePeriod, :pCompanyName, :pRequirements, :pSalary, :pRequiredWorkExperience, :pAddress, :pVacancyPostedOn")
+            int userId;
+            var query = _session.Query<User>()
+                                .Where(u => u.Email.Equals(username));
+
+            userId = query.ToFuture().Single().IdUser;
+
+            _session.CreateSQLQuery("exec proc_AddVacancy :pVacancyName, :pDescription, :pTimePeriod, :pCompanyName, :pRequirements, :pSalary, :pRequiredWorkExperience, :pAddress, :pVacancyPostedOn, :pAuthor")
                     .AddEntity(typeof(Vacancy))
                     .SetParameter("pVacancyName", vacancy.Name)
                     .SetParameter("pDescription", vacancy.Description)
@@ -122,6 +163,7 @@ namespace EmploymentAgency.Core
                     .SetParameter("pRequiredWorkExperience", vacancy.RequiredWorkExperience)
                     .SetParameter("pAddress", vacancy.Address)
                     .SetParameter("pVacancyPostedOn", DateTime.Now)
+                    .SetParameter("pAuthor", userId)
                     .List<Vacancy>();
         }
 

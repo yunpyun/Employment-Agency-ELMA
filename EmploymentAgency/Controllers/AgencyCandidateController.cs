@@ -48,5 +48,15 @@ namespace EmploymentAgency.Controllers
                                 viewModel.Vacancy.Name);
             return View("ListCandidates", viewModel);
         }
+
+        public ViewResult MyCandidates(int pageNo = 1)
+        {
+            string username = System.Web.HttpContext.Current.User.Identity.Name;
+
+            var viewModel = new ListCandidatesViewModel(_agencyRepositoryCandidate, pageNo, username);
+
+            ViewBag.Title = "Мои резюме";
+            return View("ListCandidates", viewModel);
+        }
     }
 }

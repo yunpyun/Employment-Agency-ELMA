@@ -121,6 +121,16 @@ ol {
     height: 240px;
 }
 
+.welcome-text {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    color: white;
+}
+
+.welcome-text a {
+    color: white;
+}
+
 #logo {
     width: 825px;
     position: relative;

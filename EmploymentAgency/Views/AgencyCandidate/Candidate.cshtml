@@ -57,6 +57,10 @@
                 Резюме опубликовано @Model.CandidatePostedOn.ToLocalTime().ToLongDateString()
             </div>
 
+            <div class="posted-author">
+                Автор: @Model.Author.Email
+            </div>
+
             <div class="button-suitable-object">
                 @Html.VacanciesForCandidateLink(Model)
             </div>

@@ -31,10 +31,12 @@
                     <h1><a href="/">Employment<span class="logo_colour">Agency</span></a></h1>
                     <h2>Работа для каждого</h2>
 
+                    <div class="welcome-text">
                     @if (User.Identity.IsAuthenticated)
                     {
-                        @Html.ActionLink("Выйти из аккаунта", "Logout", "Home")            
+                        <p>Добро пожаловать, @User.Identity.Name @Html.ActionLink("Выйти из аккаунта", "Logout", "Home")</p>
                     }
+                    </div>
                 </div>
             </div>
 
@@ -43,6 +45,8 @@
                 <ul id="menu">
                     <li class="@(new[] { "vacancies", "vacancy", "vacanciesforcandidate", "createvacancy", "vacanciessort"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Вакансии", "Vacancies", "Agency")</li>
                     <li class="@(new[] { "candidates", "candidate", "candidatesforvacancy"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Резюме", "Candidates", "AgencyCandidate")</li>
+                    <li class="@(new[] { "myvacancies"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Мои вакансии", "MyVacancies", "Agency")</li>
+                    <li class="@(new[] { "mycandidates"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Мои резюме", "MyCandidates", "AgencyCandidate")</li>
                 </ul>
             </div>
 

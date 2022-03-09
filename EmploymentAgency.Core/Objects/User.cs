@@ -20,5 +20,14 @@ namespace EmploymentAgency.Core.Objects
         [DataType(DataType.Password)]
         public virtual string Password 
         { get; set; }
+
+        public virtual string Role
+        { get; set; }
+
+        public virtual IList<Candidate> Candidates
+        { get; set; }
+
+        public virtual IList<Vacancy> Vacancies
+        { get; set; }
     }
 }

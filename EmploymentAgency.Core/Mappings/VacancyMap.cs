@@ -16,7 +16,7 @@ namespace EmploymentAgency.Core.Mappings
 
             Map(x => x.Name).Length(255).Not.Nullable();
 
-            Map(x => x.Description).Length(4096).Not.Nullable();
+            Map(x => x.Description).Length(4000).Not.Nullable();
 
             Map(x => x.TimePeriod).Length(255);
 
@@ -31,6 +31,8 @@ namespace EmploymentAgency.Core.Mappings
             Map(x => x.Address).Length(512).Not.Nullable(); ;
 
             Map(x => x.VacancyPostedOn).Not.Nullable();
+
+            References(x => x.Author).Column("Author").Not.Nullable();
         }
     }
 }

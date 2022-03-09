@@ -69,6 +69,10 @@
                 Вакансия опубликована @Model.VacancyPostedOn.ToLocalTime().ToLongDateString()
             </div>
 
+            <div class="posted-author">
+                Автор: @Model.Author.Email
+            </div>
+
             <div class="button-suitable-object">
                 @Html.CandidatesForVacancyLink(Model)
             </div>
