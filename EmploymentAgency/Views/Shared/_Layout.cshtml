@@ -32,10 +32,9 @@
                     <h2>Работа для каждого</h2>
 
                     <div class="welcome-text">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <p>Добро пожаловать, @User.Identity.Name @Html.ActionLink("Выйти из аккаунта", "Logout", "Home")</p>
-                    }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <p>Добро пожаловать, @User.Identity.Name @Html.ActionLink("Выйти из аккаунта", "Logout", "Home")</p>}
                     </div>
                 </div>
             </div>

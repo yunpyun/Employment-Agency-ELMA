@@ -43,19 +43,18 @@ namespace EmploymentAgency
 
         public static MvcHtmlString CandidatesForVacancyLink(this HtmlHelper helper, Vacancy vacancy)
         {
-            return helper.ActionLink("Показать подходящие резюме", "CandidatesForVacancy", "AgencyCandidate", 
-                new 
+            return helper.ActionLink("Показать подходящие резюме", "CandidatesForVacancy", "AgencyCandidate",
+                new
                 {
-                    workExperience = vacancy.RequiredWorkExperience,
-                    requirements = vacancy.Requirements,
+                    vacancyId = vacancy.IdVacancy,
                     year = vacancy.VacancyPostedOn.Year,
                     month = vacancy.VacancyPostedOn.Month,
                     title = vacancy.Name
-                }, 
-                new 
-                { 
-                    title = String.Format("See all candidates in {0}", vacancy.Name) 
-                });
+                },
+                new
+                {
+                    title = String.Format("See all candidates in {0}", vacancy.Name)
+                }); ;
         }
 
         public static MvcHtmlString VacanciesForCandidateLink(this HtmlHelper helper, Candidate candidate)
@@ -63,8 +62,7 @@ namespace EmploymentAgency
             return helper.ActionLink("Показать подходящие вакансии", "VacanciesForCandidate", "Agency",
                 new
                 {
-                    workExperience = candidate.WorkExperience,
-                    requirements = candidate.Description,
+                    candidateId = candidate.IdCandidate,
                     year = candidate.CandidatePostedOn.Year,
                     month = candidate.CandidatePostedOn.Month,
                     title = candidate.Title

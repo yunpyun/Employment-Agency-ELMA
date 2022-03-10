@@ -21,11 +21,11 @@ namespace EmploymentAgency.Models
             TotalVacancies = _agencyRepository.TotalVacancies();
         }
 
-        public ListVacanciesViewModel(IAgencyRepository _agencyRepository, string workExperience, string requirements, 
+        public ListVacanciesViewModel(IAgencyRepository _agencyRepository, int candidateId, 
             int year, int month, string title, int p)
         {
-                Vacancies = _agencyRepository.VacanciesForCandidate(workExperience, requirements, p - 1, 10);
-                TotalVacancies = _agencyRepository.TotalVacanciesForCandidate(workExperience, requirements);
+                Vacancies = _agencyRepository.VacanciesForCandidate(candidateId, p - 1, 10);
+                TotalVacancies = _agencyRepository.TotalVacanciesForCandidate(candidateId);
                 Candidate = _agencyRepository.Candidate(year, month, title);
         }
 

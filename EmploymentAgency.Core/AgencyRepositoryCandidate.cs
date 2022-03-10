@@ -48,8 +48,16 @@ namespace EmploymentAgency.Core
             return query.ToFuture().Single();
         }
 
-        public IList<Candidate> CandidatesForVacancy(string workExperience, string requirements, int pageNo, int pageSize)
+        public IList<Candidate> CandidatesForVacancy(int vacancyId, int pageNo, int pageSize)
         {
+            string workExperience;
+            string requirements;
+            var query = _session.Query<Vacancy>()
+                                .Where(u => u.IdVacancy.Equals(vacancyId));
+
+            workExperience = query.ToFuture().Single().RequiredWorkExperience;
+            requirements = query.ToFuture().Single().Requirements;
+
             var candidates = _session.Query<Candidate>()
                                 .Where(c => c.WorkExperience.Equals(workExperience) && c.Description.Contains(requirements))
                                 .OrderByDescending(c => c.CandidatePostedOn)
@@ -61,8 +69,16 @@ namespace EmploymentAgency.Core
             return candidates;
         }
 
-        public int TotalCandidatesForVacancy(string workExperience, string requirements)
+        public int TotalCandidatesForVacancy(int vacancyId)
         {
+            string workExperience;
+            string requirements;
+            var query = _session.Query<Vacancy>()
+                                .Where(u => u.IdVacancy.Equals(vacancyId));
+
+            workExperience = query.ToFuture().Single().RequiredWorkExperience;
+            requirements = query.ToFuture().Single().Requirements;
+
             return _session.Query<Candidate>()
                         .Where(c => c.WorkExperience.Equals(workExperience) && c.Description.Contains(requirements))
                         .Count();

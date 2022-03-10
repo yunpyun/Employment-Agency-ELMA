@@ -37,9 +37,9 @@ namespace EmploymentAgency.Controllers
             return View(vacancy);
         }
 
-        public ViewResult VacanciesForCandidate(string workExperience, string requirements, int year, int month, string title, int pageNo = 1)
+        public ViewResult VacanciesForCandidate(int candidateId, int year, int month, string title, int pageNo = 1)
         {
-            var viewModel = new ListVacanciesViewModel(_agencyRepository, workExperience, requirements, year, month, title, pageNo);
+            var viewModel = new ListVacanciesViewModel(_agencyRepository, candidateId, year, month, title, pageNo);
 
             if (viewModel.Candidate == null)
                 throw new HttpException(404, "Candidate not found");

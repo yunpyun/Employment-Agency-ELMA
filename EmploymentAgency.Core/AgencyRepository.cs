@@ -48,8 +48,16 @@ namespace EmploymentAgency.Core
             return query.ToFuture().Single();
         }
 
-        public IList<Vacancy> VacanciesForCandidate(string workExperience, string requirements, int pageNo, int pageSize)
+        public IList<Vacancy> VacanciesForCandidate(int candidateId, int pageNo, int pageSize)
         {
+            string workExperience;
+            string requirements;
+            var query = _session.Query<Candidate>()
+                                .Where(u => u.IdCandidate.Equals(candidateId));
+
+            workExperience = query.ToFuture().Single().WorkExperience;
+            requirements = query.ToFuture().Single().Description;
+
             var vacancies = _session.Query<Vacancy>()
                                 .Where(v => v.RequiredWorkExperience.Equals(workExperience) && requirements.Contains(v.Requirements))
                                 .OrderByDescending(v => v.VacancyPostedOn)
@@ -61,8 +69,16 @@ namespace EmploymentAgency.Core
             return vacancies;
         }
 
-        public int TotalVacanciesForCandidate(string workExperience, string requirements)
+        public int TotalVacanciesForCandidate(int candidateId)
         {
+            string workExperience;
+            string requirements;
+            var query = _session.Query<Candidate>()
+                                .Where(u => u.IdCandidate.Equals(candidateId));
+
+            workExperience = query.ToFuture().Single().WorkExperience;
+            requirements = query.ToFuture().Single().Description;
+
             return _session.Query<Vacancy>()
                         .Where(v => v.RequiredWorkExperience.Equals(workExperience) && requirements.Contains(v.Description))
                         .Count();
@@ -81,27 +97,26 @@ namespace EmploymentAgency.Core
             IList<Vacancy> vacancies;
             Func<Vacancy, object> sort;
 
-            vacancies = _session.Query<Vacancy>()
-                                        .Skip(pageNo * pageSize)
-                                        .Take(pageSize)
-                                        .Fetch(v => v.Author)
-                                        .ToList();
-
             switch (sortColumn)
             {
                 case "Name":
                     sort = v => v.Name;
-                    vacancies = sortByAscending ? vacancies.OrderBy(sort).ToList() : vacancies.OrderByDescending(sort).ToList();
                     break;
                 case "PostedOn":
                     sort = v => v.VacancyPostedOn;
-                    vacancies = sortByAscending ? vacancies.OrderBy(sort).ToList() : vacancies.OrderByDescending(sort).ToList();
                     break;
                 default:
                     sort = v => v.VacancyPostedOn;
-                    vacancies = vacancies.OrderByDescending(sort).ToList();
                     break;
             }
+
+            vacancies = _session.Query<Vacancy>()
+                            .Skip(pageNo * pageSize)
+                            .Take(pageSize)
+                            .Fetch(v => v.Author)
+                            .ToList();
+
+            vacancies = sortByAscending ? vacancies.OrderBy(sort).ToList() : vacancies.OrderByDescending(sort).ToList();
 
             return vacancies;
         }
@@ -138,12 +153,14 @@ namespace EmploymentAgency.Core
                         .Count();
         }
 
+        /// <inheritdoc/>
         public void AddVacancy(Vacancy vacancy, string username)
         {
             AddVacancyMSSQL(vacancy, username);
         }
 
         // создание вакансии с помощью вызова хранимой процедуры из БД
+
         private void AddVacancyMSSQL(Vacancy vacancy, string username)
         {
             int userId;
