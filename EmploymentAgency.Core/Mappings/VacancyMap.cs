@@ -26,7 +26,7 @@ namespace EmploymentAgency.Core.Mappings
 
             Map(x => x.Salary).Not.Nullable();
 
-            Map(x => x.RequiredWorkExperience).Length(255).Not.Nullable(); ;
+            Map(x => x.RequiredWorkExperience).Not.Nullable();
 
             Map(x => x.Address).Length(512).Not.Nullable(); ;
 

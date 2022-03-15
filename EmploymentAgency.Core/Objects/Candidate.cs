@@ -23,7 +23,7 @@ namespace EmploymentAgency.Core.Objects
         public virtual DateTime Birthday
         { get; set; }
 
-        public virtual string WorkExperience
+        public virtual DateTime StartWork
         { get; set; }
 
         public virtual string Photo

@@ -48,9 +48,8 @@ namespace EmploymentAgency.Core.Objects
         { get; set; }
 
         [Required(ErrorMessage = "Поле \"Требуемый опыт работы\" обязательно к заполнению")]
-        [StringLength(100, ErrorMessage = "В поле \"Требуемый опыт работы\" должно быть не более 100 символов")]
         [Display(Name = "Требуемый опыт работы*")]
-        public virtual string RequiredWorkExperience
+        public virtual int RequiredWorkExperience
         { get; set; }
 
         [Required(ErrorMessage = "Поле \"Адрес компании\" обязательно к заполнению")]

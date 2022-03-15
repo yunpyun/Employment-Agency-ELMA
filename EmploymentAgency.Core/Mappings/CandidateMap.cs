@@ -22,7 +22,7 @@ namespace EmploymentAgency.Core.Mappings
 
             Map(x => x.Birthday).Not.Nullable();
 
-            Map(x => x.WorkExperience).Length(255).Not.Nullable();
+            Map(x => x.StartWork);
 
             Map(x => x.Photo);
 

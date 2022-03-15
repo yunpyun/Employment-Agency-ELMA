@@ -50,16 +50,16 @@ namespace EmploymentAgency.Core
 
         public IList<Vacancy> VacanciesForCandidate(int candidateId, int pageNo, int pageSize)
         {
-            string workExperience;
-            string requirements;
+            DateTime startWork;
+            string description;
             var query = _session.Query<Candidate>()
                                 .Where(u => u.IdCandidate.Equals(candidateId));
 
-            workExperience = query.ToFuture().Single().WorkExperience;
-            requirements = query.ToFuture().Single().Description;
+            startWork = query.ToFuture().Single().StartWork;
+            description = query.ToFuture().Single().Description;
 
             var vacancies = _session.Query<Vacancy>()
-                                .Where(v => v.RequiredWorkExperience.Equals(workExperience) && requirements.Contains(v.Requirements))
+                                .Where(v => v.RequiredWorkExperience <= ((DateTime.Today.Month < startWork.Month) ? (DateTime.Today.Year - startWork.Year) - 1 : (DateTime.Today.Year - startWork.Year)) && (v.Requirements.Split(',')).All(description.Contains))
                                 .OrderByDescending(v => v.VacancyPostedOn)
                                 .Skip(pageNo * pageSize)
                                 .Take(pageSize)
@@ -71,16 +71,16 @@ namespace EmploymentAgency.Core
 
         public int TotalVacanciesForCandidate(int candidateId)
         {
-            string workExperience;
-            string requirements;
+            DateTime startWork;
+            string description;
             var query = _session.Query<Candidate>()
                                 .Where(u => u.IdCandidate.Equals(candidateId));
 
-            workExperience = query.ToFuture().Single().WorkExperience;
-            requirements = query.ToFuture().Single().Description;
+            startWork = query.ToFuture().Single().StartWork;
+            description = query.ToFuture().Single().Description;
 
             return _session.Query<Vacancy>()
-                        .Where(v => v.RequiredWorkExperience.Equals(workExperience) && requirements.Contains(v.Description))
+                        .Where(v => v.RequiredWorkExperience <= ((DateTime.Today.Month < startWork.Month) ? (DateTime.Today.Year - startWork.Year) - 1 : (DateTime.Today.Year - startWork.Year)) && (v.Requirements.Split(',')).All(description.Contains))
                         .Count();
         }
 
