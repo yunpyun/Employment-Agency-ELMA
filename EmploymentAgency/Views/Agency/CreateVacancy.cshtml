@@ -54,14 +54,30 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Requirements)
+                @*<div class="form-group">
+            @Html.LabelFor(model => model.Requirements)
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Requirements, new { htmlAttributes = new { @class = "form-control" } })
+                <br />
+                @Html.ValidationMessageFor(model => model.Requirements, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+                @*<div class="form-group">
+                    @Html.LabelFor(model => model.Skills)
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Requirements, new { htmlAttributes = new { @class = "form-control" } })
-                        <br />
-                        @Html.ValidationMessageFor(model => model.Requirements, "", new { @class = "text-danger" })
+
                     </div>
                 </div>
+
+                <div id="form-group">
+                    <input type="hidden" id="hiddenTags" />
+                    <ul id="ulTags" style="clear:both;">
+                        <li id="newTagInput"><input type="text" id="inputTag" /></li>
+                    </ul>
+                    <div style="clear:both;"></div>
+                </div>*@
+
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Salary)

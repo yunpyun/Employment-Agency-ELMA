@@ -415,6 +415,12 @@ table {
     clear: both;
     display: inline-block;
 }*/
+
+.skills-div {
+    font-style: italic;
+    display: inline;
+}
+
 .vacancy-title-page {
     float: left;
 }

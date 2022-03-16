@@ -12,27 +12,29 @@ namespace EmploymentAgency.Core.Mappings
     {
         public VacancyMap()
         {
-            Id(x => x.IdVacancy);
+            Id(x => x.VacancyId);
 
             Map(x => x.Name).Length(255).Not.Nullable();
 
             Map(x => x.Description).Length(4000).Not.Nullable();
 
-            Map(x => x.TimePeriod).Length(255);
-
             Map(x => x.CompanyName).Length(255).Not.Nullable();
-
-            Map(x => x.Requirements).Length(512).Not.Nullable();
 
             Map(x => x.Salary).Not.Nullable();
 
+            Map(x => x.TimePeriod).Length(255);
+
             Map(x => x.RequiredWorkExperience).Not.Nullable();
+
+            //Map(x => x.Requirements).Length(512).Not.Nullable();
+
+            HasManyToMany(x => x.Skills).Table("VacancySkillMap");
 
             Map(x => x.Address).Length(512).Not.Nullable(); ;
 
-            Map(x => x.VacancyPostedOn).Not.Nullable();
-
             References(x => x.Author).Column("Author").Not.Nullable();
+
+            Map(x => x.VacancyPostedOn).Not.Nullable();
         }
     }
 }

@@ -43,8 +43,12 @@
                 Опыт работы: @Model.RequiredWorkExperience
             </div>
 
-            <div class="post-requirements">
-                Требования: @Model.Requirements
+            @*<div class="post-requirements">
+            Требования: @Model.Requirements
+        </div>*@
+
+            <div class="vacancy-skill">
+                Требования: @Helpers.Skills(Html, Model.Skills)
             </div>
 
             <div class="post-time-period">

@@ -9,7 +9,7 @@ namespace EmploymentAgency.Core.Objects
 {
     public class User
     {
-        public virtual int IdUser
+        public virtual int UserId
         { get; set; }
 
         [Required]

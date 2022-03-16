@@ -76,9 +76,11 @@
     <Compile Include="IAgencyRepositoryCandidate.cs" />
     <Compile Include="IAgencyRepositoryUser.cs" />
     <Compile Include="Mappings\CandidateMap.cs" />
+    <Compile Include="Mappings\SkillMap.cs" />
     <Compile Include="Mappings\UserMap.cs" />
     <Compile Include="Mappings\VacancyMap.cs" />
     <Compile Include="Objects\Candidate.cs" />
+    <Compile Include="Objects\Skill.cs" />
     <Compile Include="Objects\User.cs" />
     <Compile Include="Objects\Vacancy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

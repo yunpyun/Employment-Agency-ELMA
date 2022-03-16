@@ -1,17 +1,7 @@
-﻿@{
-    Layout = null;
+﻿@helper Skills(System.Web.Mvc.HtmlHelper htmlHelper, IList<EmploymentAgency.Core.Objects.Skill> skills)
+{
+    foreach (var skill in skills)
+    {
+        <div class="skills-div">@EmploymentAgency.ActionLinkExtensions.SkillLink(htmlHelper, skill)</div>
+    }
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>

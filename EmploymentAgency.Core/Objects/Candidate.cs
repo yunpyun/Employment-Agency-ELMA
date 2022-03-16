@@ -8,7 +8,7 @@ namespace EmploymentAgency.Core.Objects
 {
     public class Candidate
     {
-        public virtual int IdCandidate
+        public virtual int CandidateId
         { get; set; }
 
         public virtual string FirstName
@@ -23,9 +23,6 @@ namespace EmploymentAgency.Core.Objects
         public virtual DateTime Birthday
         { get; set; }
 
-        public virtual DateTime StartWork
-        { get; set; }
-
         public virtual string Photo
         { get; set; }
 
@@ -35,7 +32,7 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Email
         { get; set; }
 
-        public virtual DateTime CandidatePostedOn
+        public virtual DateTime StartWork
         { get; set; }
 
         public virtual string Title
@@ -44,7 +41,13 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Description
         { get; set; }
 
+        public virtual IList<Skill> Skills
+        { get; set; }
+
         public virtual User Author
+        { get; set; }
+
+        public virtual DateTime CandidatePostedOn
         { get; set; }
     }
 }

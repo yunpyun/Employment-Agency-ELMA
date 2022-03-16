@@ -8,40 +8,43 @@
             <h1>@ViewBag.Title</h1>
         </div>
     </div>
-    @if (ViewBag.Title == "Свежие вакансии")
-    {
-        <div class="vacancy-row">
-            <div class="button-new-vacancy">
-                @Html.ActionLink("Создать свою вакансию", "CreateVacancy", null, new { @class = "btn-primary" })
-            </div>
-        </div>
 
-        <div class="vacancy-sort">
-            <br />
-            @Html.ActionLink("Сортировать по имени (А-Я)", "VacanciesSort", null, new { sortColumn = "Name", sortByAscending = true }, null)
-            @Html.ActionLink("Сортировать по имени (Я-А)", "VacanciesSort", null, new { sortColumn = "Name", sortByAscending = false }, null)
-            <br />
-            @Html.ActionLink("Сортировать по дате (↓)", "VacanciesSort", null, new { sortColumn = "PostedOn", sortByAscending = true }, null)
-            @Html.ActionLink("Сортировать по дате (↑)", "VacanciesSort", null, new { sortColumn = "PostedOn", sortByAscending = false }, null)
-        </div>
-    }
-
-
-    @Html.Partial("_Pager", Model)
-
-    @if (Model.Vacancies.Count > 0)
-    {
-        foreach (var vacancy in Model.Vacancies)
+    <div class="fresh-vacancy">
+        @if (ViewBag.Title == "Свежие вакансии")
         {
-            @Html.Partial("_PostTemplate", vacancy)
-        }
-    }
-    else
-    {
-        <p>Вакансии не найдены!</p>
-    }
+            <div class="vacancy-row">
+                <div class="button-new-vacancy">
+                    @Html.ActionLink("Создать свою вакансию", "CreateVacancy", null, new { @class = "btn-primary" })
+                </div>
+            </div>
 
-    @Html.Partial("_Pager", Model)
+            <div class="vacancy-sort">
+                @Html.ActionLink("Сортировать по имени (А-Я)", "VacanciesSort", null, new { sortColumn = "Name", sortByAscending = true }, null)
+                @Html.ActionLink("Сортировать по имени (Я-А)", "VacanciesSort", null, new { sortColumn = "Name", sortByAscending = false }, null)
+                <br />
+                @Html.ActionLink("Сортировать по дате (↓)", "VacanciesSort", null, new { sortColumn = "PostedOn", sortByAscending = true }, null)
+                @Html.ActionLink("Сортировать по дате (↑)", "VacanciesSort", null, new { sortColumn = "PostedOn", sortByAscending = false }, null)
+            </div>
+        }
+    </div>
+
+    <div class="list-vacancy">
+        @Html.Partial("_Pager", Model)
+
+        @if (Model.Vacancies.Count > 0)
+        {
+            foreach (var vacancy in Model.Vacancies)
+            {
+                @Html.Partial("_PostTemplate", vacancy)
+            }
+        }
+        else
+        {
+            <p>Вакансии не найдены!</p>
+        }
+
+        @Html.Partial("_Pager", Model)
+    </div>
 
 </div>
 

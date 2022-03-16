@@ -9,7 +9,7 @@ namespace EmploymentAgency.Core.Objects
 {
     public class Vacancy
     {
-        public virtual int IdVacancy
+        public virtual int VacancyId
         { get; set; }
 
         [Required(ErrorMessage = "Поле \"Название вакансии\" обязательно к заполнению")]
@@ -25,21 +25,10 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Description
         { get; set; }
 
-        [StringLength(100, ErrorMessage = "В поле \"Период, на который ищется работник\" должно быть не более 100 символов")]
-        [Display(Name = "Период, на который ищется работник")]
-        public virtual string TimePeriod
-        { get; set; }
-
         [Required(ErrorMessage = "Поле \"Название компании\" обязательно к заполнению")]
         [StringLength(200, ErrorMessage = "В поле \"Название компании\" должно быть не более 200 символов")]
         [Display(Name = "Название компании*")]
         public virtual string CompanyName
-        { get; set; }
-
-        [Required(ErrorMessage = "Поле \"Требования\" обязательно к заполнению")]
-        [StringLength(300, ErrorMessage = "В поле \"Требования\" должно быть не более 300 символов")]
-        [Display(Name = "Требования*")]
-        public virtual string Requirements
         { get; set; }
 
         [Required(ErrorMessage = "Поле \"Заработная плата\" обязательно к заполнению")]
@@ -47,9 +36,24 @@ namespace EmploymentAgency.Core.Objects
         public virtual decimal Salary
         { get; set; }
 
+        [StringLength(100, ErrorMessage = "В поле \"Период, на который ищется работник\" должно быть не более 100 символов")]
+        [Display(Name = "Период, на который ищется работник")]
+        public virtual string TimePeriod
+        { get; set; }
+
         [Required(ErrorMessage = "Поле \"Требуемый опыт работы\" обязательно к заполнению")]
         [Display(Name = "Требуемый опыт работы*")]
         public virtual int RequiredWorkExperience
+        { get; set; }
+
+        /*[Required(ErrorMessage = "Поле \"Требования\" обязательно к заполнению")]
+        [StringLength(300, ErrorMessage = "В поле \"Требования\" должно быть не более 300 символов")]
+        [Display(Name = "Требования*")]
+        public virtual string Requirements
+        { get; set; }*/
+
+
+        public virtual IList<Skill> Skills
         { get; set; }
 
         [Required(ErrorMessage = "Поле \"Адрес компании\" обязательно к заполнению")]
@@ -58,10 +62,10 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Address
         { get; set; }
 
-        public virtual DateTime VacancyPostedOn
-        { get; set; }
-
         public virtual User Author
+        { get; set; }
+        
+        public virtual DateTime VacancyPostedOn
         { get; set; }
     }
 }

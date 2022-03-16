@@ -32,7 +32,13 @@ namespace EmploymentAgency.Core
                                   .Fetch(c => c.Author)
                                   .ToList();
 
-            return candidates;
+            var candidateIds = candidates.Select(c => c.CandidateId).ToList();
+
+            return _session.Query<Candidate>()
+                  .Where(c => candidateIds.Contains(c.CandidateId))
+                  .OrderByDescending(c => c.CandidatePostedOn)
+                  .FetchMany(c => c.Skills)
+                  .ToList();
         }
 
         public int TotalCandidates()
@@ -51,17 +57,13 @@ namespace EmploymentAgency.Core
         public IList<Candidate> CandidatesForVacancy(int vacancyId, int pageNo, int pageSize)
         {
             int workExperience;
-            string requirements;
             var query = _session.Query<Vacancy>()
-                                .Where(u => u.IdVacancy.Equals(vacancyId));
+                                .Where(u => u.VacancyId.Equals(vacancyId));
 
             workExperience = query.ToFuture().Single().RequiredWorkExperience;
-            requirements = query.ToFuture().Single().Requirements;
-
-            string[] requirementsArr = requirements.Split(','); 
 
             var candidates = _session.Query<Candidate>()
-                                .Where(c => (workExperience >= ((DateTime.Today.Month < c.StartWork.Month) ? (DateTime.Today.Year - c.StartWork.Year) - 1 : (DateTime.Today.Year - c.StartWork.Year))) && requirementsArr.All(c.Description.Contains))
+                                .Where(c => (workExperience >= ((DateTime.Today.Month < c.StartWork.Month) ? (DateTime.Today.Year - c.StartWork.Year) - 1 : (DateTime.Today.Year - c.StartWork.Year))))
                                 .OrderByDescending(c => c.CandidatePostedOn)
                                 .Skip(pageNo * pageSize)
                                 .Take(pageSize)
@@ -74,17 +76,13 @@ namespace EmploymentAgency.Core
         public int TotalCandidatesForVacancy(int vacancyId)
         {
             int workExperience;
-            string requirements;
             var query = _session.Query<Vacancy>()
-                                .Where(u => u.IdVacancy.Equals(vacancyId));
+                                .Where(u => u.VacancyId.Equals(vacancyId));
 
             workExperience = query.ToFuture().Single().RequiredWorkExperience;
-            requirements = query.ToFuture().Single().Requirements;
-
-            string[] requirementsArr = requirements.Split(',');
 
             return _session.Query<Candidate>()
-                        .Where(c => (workExperience >= ((DateTime.Today.Month < c.StartWork.Month) ? (DateTime.Today.Year - c.StartWork.Year) - 1 : (DateTime.Today.Year - c.StartWork.Year))) && requirementsArr.All(c.Description.Contains))
+                        .Where(c => (workExperience >= ((DateTime.Today.Month < c.StartWork.Month) ? (DateTime.Today.Year - c.StartWork.Year) - 1 : (DateTime.Today.Year - c.StartWork.Year))))
                         .Count();
         }
 
@@ -102,10 +100,10 @@ namespace EmploymentAgency.Core
             var query = _session.Query<User>()
                                 .Where(u => u.Email.Equals(username));
 
-            userId = query.ToFuture().Single().IdUser;
+            userId = query.ToFuture().Single().UserId;
 
             var candidates = _session.Query<Candidate>()
-                                  .Where(c => c.Author.IdUser == userId)
+                                  .Where(c => c.Author.UserId == userId)
                                   .OrderByDescending(c => c.CandidatePostedOn)
                                   .Skip(pageNo * pageSize)
                                   .Take(pageSize)
@@ -121,10 +119,10 @@ namespace EmploymentAgency.Core
             var query = _session.Query<User>()
                                 .Where(u => u.Email.Equals(username));
 
-            userId = query.ToFuture().Single().IdUser;
+            userId = query.ToFuture().Single().UserId;
 
             return _session.Query<Candidate>()
-                        .Where(c => c.Author.IdUser == userId)
+                        .Where(c => c.Author.UserId == userId)
                         .Count();
         }
     }

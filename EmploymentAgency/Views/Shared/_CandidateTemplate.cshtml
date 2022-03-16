@@ -17,6 +17,11 @@
 
             <div class="row">
 
+                <!--Skills-->
+                <div class="vacancy-skill">
+                    <span>Навыки:</span>@Helpers.Skills(Html, Model.Skills)
+                </div>
+
                 <!--Candidate date-->
                 <div class="posted-date-main">
                     @Model.CandidatePostedOn.ToLocalTime().ToLongDateString()

@@ -12,7 +12,7 @@ namespace EmploymentAgency.Core.Mappings
     {
         public CandidateMap()
         {
-            Id(x => x.IdCandidate);
+            Id(x => x.CandidateId);
 
             Map(x => x.FirstName).Length(255).Not.Nullable();
 
@@ -22,21 +22,23 @@ namespace EmploymentAgency.Core.Mappings
 
             Map(x => x.Birthday).Not.Nullable();
 
-            Map(x => x.StartWork);
-
             Map(x => x.Photo);
 
             Map(x => x.Phone).Length(255).Not.Nullable();
 
-            Map(x => x.Email).Length(255).Not.Nullable(); ;
+            Map(x => x.Email).Length(255).Not.Nullable();
 
-            Map(x => x.CandidatePostedOn).Not.Nullable();
+            Map(x => x.StartWork);
 
             Map(x => x.Title).Length(255).Not.Nullable();
 
             Map(x => x.Description).Length(4000).Not.Nullable();
 
+            HasManyToMany(x => x.Skills).Table("CandidateSkillMap");
+
             References(x => x.Author).Column("Author").Not.Nullable();
+
+            Map(x => x.CandidatePostedOn).Not.Nullable();
         }
     }
 }

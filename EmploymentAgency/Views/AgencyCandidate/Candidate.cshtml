@@ -37,13 +37,17 @@
             </div>
 
             <div class="post-experience">
-                Опыт работы: @Model.WorkExperience
+                Опыт работы: @((DateTime.Today.Month < Model.StartWork.Month) ? (DateTime.Today.Year - Model.StartWork.Year) - 1 : (DateTime.Today.Year - Model.StartWork.Year))
             </div>
 
             <br />
             <div class="post-body">
                 Описание:<br />
                 @Html.Raw(Model.Description)
+            </div>
+
+            <div class="candidate-skill">
+                Навыки: @Helpers.Skills(Html, Model.Skills)
             </div>
 
             <br />

@@ -32,7 +32,13 @@ namespace EmploymentAgency.Core
                                   .Fetch(v => v.Author)
                                   .ToList();
 
-            return vacancies;
+            var vacancyIds = vacancies.Select(v => v.VacancyId).ToList();
+
+            return _session.Query<Vacancy>()
+                  .Where(v => vacancyIds.Contains(v.VacancyId))
+                  .OrderByDescending(v => v.VacancyPostedOn)
+                  .FetchMany(v => v.Skills)
+                  .ToList();
         }
 
         public int TotalVacancies()
@@ -53,13 +59,13 @@ namespace EmploymentAgency.Core
             DateTime startWork;
             string description;
             var query = _session.Query<Candidate>()
-                                .Where(u => u.IdCandidate.Equals(candidateId));
+                                .Where(u => u.CandidateId.Equals(candidateId));
 
             startWork = query.ToFuture().Single().StartWork;
             description = query.ToFuture().Single().Description;
 
             var vacancies = _session.Query<Vacancy>()
-                                .Where(v => v.RequiredWorkExperience <= ((DateTime.Today.Month < startWork.Month) ? (DateTime.Today.Year - startWork.Year) - 1 : (DateTime.Today.Year - startWork.Year)) && (v.Requirements.Split(',')).All(description.Contains))
+                                .Where(v => v.RequiredWorkExperience <= ((DateTime.Today.Month < startWork.Month) ? (DateTime.Today.Year - startWork.Year) - 1 : (DateTime.Today.Year - startWork.Year)))
                                 .OrderByDescending(v => v.VacancyPostedOn)
                                 .Skip(pageNo * pageSize)
                                 .Take(pageSize)
@@ -74,13 +80,13 @@ namespace EmploymentAgency.Core
             DateTime startWork;
             string description;
             var query = _session.Query<Candidate>()
-                                .Where(u => u.IdCandidate.Equals(candidateId));
+                                .Where(u => u.CandidateId.Equals(candidateId));
 
             startWork = query.ToFuture().Single().StartWork;
             description = query.ToFuture().Single().Description;
 
             return _session.Query<Vacancy>()
-                        .Where(v => v.RequiredWorkExperience <= ((DateTime.Today.Month < startWork.Month) ? (DateTime.Today.Year - startWork.Year) - 1 : (DateTime.Today.Year - startWork.Year)) && (v.Requirements.Split(',')).All(description.Contains))
+                        .Where(v => v.RequiredWorkExperience <= ((DateTime.Today.Month < startWork.Month) ? (DateTime.Today.Year - startWork.Year) - 1 : (DateTime.Today.Year - startWork.Year)))
                         .Count();
         }
 
@@ -127,17 +133,26 @@ namespace EmploymentAgency.Core
             var query = _session.Query<User>()
                                 .Where(u => u.Email.Equals(username));
 
-            userId = query.ToFuture().Single().IdUser;
+            var queryUserId = query.ToFuture().SingleOrDefault();
+            
+            if (queryUserId != null)
+            {
+                userId = queryUserId.UserId;
 
-            var vacancies = _session.Query<Vacancy>()
-                                  .Where(v => v.Author.IdUser == userId)
+                var vacancies = _session.Query<Vacancy>()
+                                  .Where(v => v.Author.UserId == userId)
                                   .OrderByDescending(v => v.VacancyPostedOn)
                                   .Skip(pageNo * pageSize)
                                   .Take(pageSize)
                                   .Fetch(v => v.Author)
                                   .ToList();
 
-            return vacancies;
+                return vacancies;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public int TotalMyVacancies(string username)
@@ -146,11 +161,20 @@ namespace EmploymentAgency.Core
             var query = _session.Query<User>()
                                 .Where(u => u.Email.Equals(username));
 
-            userId = query.ToFuture().Single().IdUser;
+            var queryUserId = query.ToFuture().SingleOrDefault();
 
-            return _session.Query<Vacancy>()
-                        .Where(v => v.Author.IdUser == userId)
+            if (queryUserId != null)
+            {
+                userId = queryUserId.UserId;
+
+                return _session.Query<Vacancy>()
+                        .Where(v => v.Author.UserId == userId)
                         .Count();
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         /// <inheritdoc/>
@@ -167,15 +191,14 @@ namespace EmploymentAgency.Core
             var query = _session.Query<User>()
                                 .Where(u => u.Email.Equals(username));
 
-            userId = query.ToFuture().Single().IdUser;
+            userId = query.ToFuture().Single().UserId;
 
-            _session.CreateSQLQuery("exec proc_AddVacancy :pVacancyName, :pDescription, :pTimePeriod, :pCompanyName, :pRequirements, :pSalary, :pRequiredWorkExperience, :pAddress, :pVacancyPostedOn, :pAuthor")
+            _session.CreateSQLQuery("exec proc_AddVacancy :pVacancyName, :pDescription, :pTimePeriod, :pCompanyName, :pSalary, :pRequiredWorkExperience, :pAddress, :pVacancyPostedOn, :pAuthor")
                     .AddEntity(typeof(Vacancy))
                     .SetParameter("pVacancyName", vacancy.Name)
                     .SetParameter("pDescription", vacancy.Description)
                     .SetParameter("pTimePeriod", vacancy.TimePeriod)
                     .SetParameter("pCompanyName", vacancy.CompanyName)
-                    .SetParameter("pRequirements", vacancy.Requirements)
                     .SetParameter("pSalary", vacancy.Salary)
                     .SetParameter("pRequiredWorkExperience", vacancy.RequiredWorkExperience)
                     .SetParameter("pAddress", vacancy.Address)

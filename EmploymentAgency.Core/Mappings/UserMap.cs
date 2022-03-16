@@ -12,7 +12,7 @@ namespace EmploymentAgency.Core.Mappings
     {
         public UserMap()
         {
-            Id(x => x.IdUser);
+            Id(x => x.UserId);
 
             Map(x => x.Email).Length(255).Not.Nullable();
 

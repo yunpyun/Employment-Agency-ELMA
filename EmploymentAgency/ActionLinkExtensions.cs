@@ -46,7 +46,7 @@ namespace EmploymentAgency
             return helper.ActionLink("Показать подходящие резюме", "CandidatesForVacancy", "AgencyCandidate",
                 new
                 {
-                    vacancyId = vacancy.IdVacancy,
+                    vacancyId = vacancy.VacancyId,
                     year = vacancy.VacancyPostedOn.Year,
                     month = vacancy.VacancyPostedOn.Month,
                     title = vacancy.Name
@@ -62,14 +62,23 @@ namespace EmploymentAgency
             return helper.ActionLink("Показать подходящие вакансии", "VacanciesForCandidate", "Agency",
                 new
                 {
-                    candidateId = candidate.IdCandidate,
+                    candidateId = candidate.CandidateId,
                     year = candidate.CandidatePostedOn.Year,
                     month = candidate.CandidatePostedOn.Month,
                     title = candidate.Title
                 },
                 new
                 {
-                    title = String.Format("See all candidates in {0}", candidate.Title)
+                    title = String.Format("See all vacancies in {0}", candidate.Title)
+                });
+        }
+
+        public static MvcHtmlString SkillLink(this HtmlHelper helper, Skill skill)
+        {
+            return helper.ActionLink(skill.Name, "Skill", "Agency", new { skill = skill.Name },
+                new
+                {
+                    title = String.Format("See all vacancies in {0}", skill.Name)
                 });
         }
 
