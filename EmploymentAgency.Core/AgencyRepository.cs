@@ -30,12 +30,13 @@ namespace EmploymentAgency.Core
                                   .Skip(pageNo * pageSize)
                                   .Take(pageSize)
                                   .Fetch(v => v.Author)
+                                  .Fetch(v => v.Status)
                                   .ToList();
 
             var vacancyIds = vacancies.Select(v => v.VacancyId).ToList();
 
             return _session.Query<Vacancy>()
-                  .Where(v => vacancyIds.Contains(v.VacancyId))
+                  .Where(v => vacancyIds.Contains(v.VacancyId) && v.Status.Name == "Активный")
                   .OrderByDescending(v => v.VacancyPostedOn)
                   .FetchMany(v => v.Skills)
                   .ToList();
@@ -43,7 +44,21 @@ namespace EmploymentAgency.Core
 
         public int TotalVacancies()
         {
-            return _session.Query<Vacancy>().Count();
+            var vacancies = _session.Query<Vacancy>()
+                                  .OrderByDescending(v => v.VacancyPostedOn)
+                                  .Fetch(v => v.Author)
+                                  .Fetch(v => v.Status)
+                                  .ToList();
+
+            var vacancyIds = vacancies.Select(v => v.VacancyId).ToList();
+
+            return _session.Query<Vacancy>()
+                  .Where(v => vacancyIds.Contains(v.VacancyId) && v.Status.Name == "Активный")
+                  .OrderByDescending(v => v.VacancyPostedOn)
+                  .FetchMany(v => v.Skills)
+                  .Count();
+
+            //return _session.Query<Vacancy>().Count();
         }
 
         public Vacancy Vacancy(int year, int month, string title)
@@ -133,26 +148,17 @@ namespace EmploymentAgency.Core
             var query = _session.Query<User>()
                                 .Where(u => u.Email.Equals(username));
 
-            var queryUserId = query.ToFuture().SingleOrDefault();
-            
-            if (queryUserId != null)
-            {
-                userId = queryUserId.UserId;
+            userId = query.ToFuture().SingleOrDefault().UserId;
 
-                var vacancies = _session.Query<Vacancy>()
-                                  .Where(v => v.Author.UserId == userId)
-                                  .OrderByDescending(v => v.VacancyPostedOn)
-                                  .Skip(pageNo * pageSize)
-                                  .Take(pageSize)
-                                  .Fetch(v => v.Author)
-                                  .ToList();
+            var vacancies = _session.Query<Vacancy>()
+                              .Where(v => v.Author.UserId == userId)
+                              .OrderByDescending(v => v.VacancyPostedOn)
+                              .Skip(pageNo * pageSize)
+                              .Take(pageSize)
+                              .Fetch(v => v.Author)
+                              .ToList();
 
-                return vacancies;
-            }
-            else
-            {
-                return null;
-            }
+            return vacancies;
         }
 
         public int TotalMyVacancies(string username)
@@ -161,20 +167,11 @@ namespace EmploymentAgency.Core
             var query = _session.Query<User>()
                                 .Where(u => u.Email.Equals(username));
 
-            var queryUserId = query.ToFuture().SingleOrDefault();
+            userId = query.ToFuture().SingleOrDefault().UserId;
 
-            if (queryUserId != null)
-            {
-                userId = queryUserId.UserId;
-
-                return _session.Query<Vacancy>()
-                        .Where(v => v.Author.UserId == userId)
-                        .Count();
-            }
-            else
-            {
-                return 0;
-            }
+            return _session.Query<Vacancy>()
+                    .Where(v => v.Author.UserId == userId)
+                    .Count();
         }
 
         /// <inheritdoc/>
@@ -184,7 +181,6 @@ namespace EmploymentAgency.Core
         }
 
         // создание вакансии с помощью вызова хранимой процедуры из БД
-
         private void AddVacancyMSSQL(Vacancy vacancy, string username)
         {
             int userId;

@@ -411,14 +411,14 @@ table {
 /*.post .post-foot {
     float: right;
 }*/
-/*.vacancy-row {
-    clear: both;
-    display: inline-block;
-}*/
+
+.vacancy-row {
+    /*clear: both;
+    display: inline-block;*/
+}
 
 .skills-div {
     font-style: italic;
-    display: inline;
 }
 
 .vacancy-title-page {
@@ -430,9 +430,30 @@ table {
     margin-top: 10px;
 }
 
-.vacancy-sort {
+.vacancy-title {
     float: left;
 }
+
+.vacancy-status {
+    float: left;
+    margin-left: 10px;
+    height: 30px;
+    line-height: 30px;
+    width: 100px;
+    text-align: center;
+    font-weight: bold;
+    color: #FFF;
+}
+
+    .vacancy-status .active {
+        background: #5D8EC7;
+        border-radius: 5px;
+    }
+
+    .vacancy-status .archive {
+        background: #777;
+        border-radius: 5px;
+    }
 
 .btn-primary {
     /*color: #00c6ff;*/

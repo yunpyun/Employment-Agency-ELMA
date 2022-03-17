@@ -52,5 +52,11 @@ namespace EmploymentAgency.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+
+        [AllowAnonymous]
+        public ActionResult Registration()
+        {
+            return View("Registration");
+        }
     }
 }

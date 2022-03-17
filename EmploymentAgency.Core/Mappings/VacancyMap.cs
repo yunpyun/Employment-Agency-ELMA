@@ -32,6 +32,8 @@ namespace EmploymentAgency.Core.Mappings
 
             Map(x => x.Address).Length(512).Not.Nullable(); ;
 
+            References(x => x.Status).Column("Status").Not.Nullable();
+
             References(x => x.Author).Column("Author").Not.Nullable();
 
             Map(x => x.VacancyPostedOn).Not.Nullable();

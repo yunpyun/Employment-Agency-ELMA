@@ -21,7 +21,16 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Password 
         { get; set; }
 
-        public virtual string Role
+        public virtual string FirstName
+        { get; set; }
+
+        public virtual string MiddleName
+        { get; set; }
+
+        public virtual string LastName
+        { get; set; }
+
+        public virtual Role Role
         { get; set; }
 
         public virtual IList<Candidate> Candidates

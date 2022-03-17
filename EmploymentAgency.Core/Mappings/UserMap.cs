@@ -18,7 +18,13 @@ namespace EmploymentAgency.Core.Mappings
 
             Map(x => x.Password).Length(255).Not.Nullable();
 
-            Map(x => x.Role).Length(255).Not.Nullable();
+            Map(x => x.FirstName).Length(255).Not.Nullable();
+
+            Map(x => x.MiddleName).Length(255);
+
+            Map(x => x.LastName).Length(255).Not.Nullable();
+
+            References(x => x.Role).Column("Role").Not.Nullable();
 
             HasMany(x => x.Candidates)
                 .Inverse()

@@ -44,8 +44,11 @@
                 <ul id="menu">
                     <li class="@(new[] { "vacancies", "vacancy", "vacanciesforcandidate", "createvacancy", "vacanciessort"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Вакансии", "Vacancies", "Agency")</li>
                     <li class="@(new[] { "candidates", "candidate", "candidatesforvacancy"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Резюме", "Candidates", "AgencyCandidate")</li>
-                    <li class="@(new[] { "myvacancies"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Мои вакансии", "MyVacancies", "Agency")</li>
-                    <li class="@(new[] { "mycandidates"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Мои резюме", "MyCandidates", "AgencyCandidate")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="@(new[] { "myvacancies" }.Contains(action) ? "selected" : "")">@Html.ActionLink("Мои вакансии", "MyVacancies", "Agency")</li>
+                        <li class="@(new[] { "mycandidates" }.Contains(action) ? "selected" : "")">@Html.ActionLink("Мои резюме", "MyCandidates", "AgencyCandidate")</li>
+                    }
                 </ul>
             </div>
 

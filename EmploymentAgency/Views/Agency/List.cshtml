@@ -18,15 +18,21 @@
                 </div>
             </div>
 
+            <div style="clear: both;"></div>
+
             <div class="vacancy-sort">
                 @Html.ActionLink("Сортировать по имени (А-Я)", "VacanciesSort", null, new { sortColumn = "Name", sortByAscending = true }, null)
                 @Html.ActionLink("Сортировать по имени (Я-А)", "VacanciesSort", null, new { sortColumn = "Name", sortByAscending = false }, null)
                 <br />
                 @Html.ActionLink("Сортировать по дате (↓)", "VacanciesSort", null, new { sortColumn = "PostedOn", sortByAscending = true }, null)
                 @Html.ActionLink("Сортировать по дате (↑)", "VacanciesSort", null, new { sortColumn = "PostedOn", sortByAscending = false }, null)
+                <br />
+                <br />
             </div>
         }
     </div>
+
+    <div style="clear: both;"></div>
 
     <div class="list-vacancy">
         @Html.Partial("_Pager", Model)

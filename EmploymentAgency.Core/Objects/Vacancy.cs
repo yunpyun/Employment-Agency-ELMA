@@ -62,6 +62,9 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Address
         { get; set; }
 
+        public virtual Status Status
+        { get; set; }
+
         public virtual User Author
         { get; set; }
         

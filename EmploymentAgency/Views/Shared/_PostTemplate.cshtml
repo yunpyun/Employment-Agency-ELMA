@@ -13,7 +13,24 @@
                 <h2>@Html.VacancyLink(Model)</h2>
             </div>
 
+            <div class="vacancy-status">
+                @if (Model.Status.Name == "Активный")
+                {
+                    <div class="active">
+                        Активная
+                    </div>
+                }
+                else
+                {
+                    <div class="archive">
+                        Архивная
+                    </div>
+                }
+            </div>
+
         </div>
+
+        <div style="clear: both;"></div>
 
         <div class="row">
             <!--Skills-->
