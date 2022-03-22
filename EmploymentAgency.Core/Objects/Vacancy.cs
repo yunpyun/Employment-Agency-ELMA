@@ -65,7 +65,7 @@ namespace EmploymentAgency.Core.Objects
         public virtual Status Status
         { get; set; }
 
-        public virtual User Author
+        public virtual UserAgency Author
         { get; set; }
         
         public virtual DateTime VacancyPostedOn

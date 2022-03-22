@@ -1,0 +1,46 @@
+﻿@model EmploymentAgency.Core.Objects.UserAgency
+
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<div id="content">
+    <div class="user-profile">
+        <div class="row">
+
+            <div class="user-title">
+                @if (Model.MiddleName != null)
+                {
+                    <h1>@Model.LastName @Model.FirstName @Model.MiddleName</h1>
+                }
+                else
+                {
+                    <h1>@Model.LastName @Model.FirstName </h1>
+                }
+            </div>
+
+        </div>
+
+        @*<div class="user-firstname">
+            Имя: @Model.FirstName
+        </div>
+
+        @if (Model.MiddleName != null)
+        {
+            <div class="user-middlename">
+                Отчество: @Model.MiddleName
+            </div>
+        }
+
+        <div class="user-lastname">
+            Фамилия: @Model.LastName
+        </div>*@
+
+        <div class="user-login">
+            Логин: @Model.Email
+        </div>
+
+        <br />
+
+    </div>
+</div>

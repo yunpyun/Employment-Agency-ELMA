@@ -34,7 +34,7 @@
                     <div class="welcome-text">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <p>Добро пожаловать, @User.Identity.Name @Html.ActionLink("Выйти из аккаунта", "Logout", "Home")</p>}
+                        <p>Добро пожаловать, @User.Identity.Name @Html.ActionLink("Профиль", "UserProfile", "Home") @Html.ActionLink("Выйти из аккаунта", "Logout", "Home")</p>}
                     </div>
                 </div>
             </div>

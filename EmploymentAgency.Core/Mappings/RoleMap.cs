@@ -16,7 +16,7 @@ namespace EmploymentAgency.Core.Mappings
 
             Map(x => x.Name).Length(255).Not.Nullable();
 
-            HasMany(x => x.User)
+            HasMany(x => x.UserAgency)
                 .Inverse()
                 .Cascade.All()
                 .KeyColumn("Role");

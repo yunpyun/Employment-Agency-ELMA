@@ -205,6 +205,7 @@
     <Content Include="Views\AgencyCandidate\ListCandidates.cshtml" />
     <Content Include="Views\AgencyCandidate\Candidate.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
+    <Content Include="Views\Home\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

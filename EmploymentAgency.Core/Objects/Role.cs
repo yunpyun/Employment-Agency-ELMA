@@ -14,7 +14,7 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Name
         { get; set; }
 
-        public virtual IList<User> User
+        public virtual IList<UserAgency> UserAgency
         { get; set; }
     }
 }

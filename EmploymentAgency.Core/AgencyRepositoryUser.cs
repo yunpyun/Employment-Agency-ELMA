@@ -23,12 +23,33 @@ namespace EmploymentAgency.Core
 
         // u - пользователи
 
-        public User User(string login, string pwd)
+        public UserAgency User(string login, string pwd)
         {
-            var query = _session.Query<User>()
+            var query = _session.Query<UserAgency>()
                                 .Where(u => u.Email.Equals(login) && u.Password.Equals(pwd));
 
             return query.ToFuture().SingleOrDefault();
+        }
+
+        public UserAgency UserForRegistration(string login)
+        {
+            var query = _session.Query<UserAgency>()
+                                .Where(u => u.Email.Equals(login));
+
+            return query.ToFuture().SingleOrDefault();
+        }
+
+        public void AddUser(UserAgency user)
+        {
+            _session.CreateSQLQuery("exec proc_AddUser :pEmail, :pPassword, :pFirstName, :pMiddleName, :pLastName, :pRole")
+                    .AddEntity(typeof(UserAgency))
+                    .SetParameter("pEmail", user.Email)
+                    .SetParameter("pPassword", user.Password)
+                    .SetParameter("pFirstName", user.FirstName)
+                    .SetParameter("pMiddleName", user.MiddleName)
+                    .SetParameter("pLastName", user.LastName)
+                    .SetParameter("pRole", 3)
+                    .List<UserAgency>();
         }
     }
 }

@@ -44,7 +44,7 @@ namespace EmploymentAgency.Core.Objects
         public virtual IList<Skill> Skills
         { get; set; }
 
-        public virtual User Author
+        public virtual UserAgency Author
         { get; set; }
 
         public virtual DateTime CandidatePostedOn

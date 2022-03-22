@@ -533,4 +533,27 @@ table {
         resize: none;
     }
 
+    .form-group .form-control-login {
+        width: 25%;
+        height: 15px;
+        padding: 5px;
+    }
+
+    .form-group .form-control-login-btn {
+        height: 30px;
+        padding: 5px;
+    }
+
+.form-group-login {
+    margin-bottom: 15px;
+    width: 30%;
+    height: 15px;
+    display: inline-block;
+}
+
+    .form-group-login .form-control-login {
+        height: 15px;
+        padding: 5px;
+    }
+
 

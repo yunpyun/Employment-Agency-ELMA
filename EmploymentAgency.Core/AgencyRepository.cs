@@ -145,7 +145,7 @@ namespace EmploymentAgency.Core
         public IList<Vacancy> MyVacancies(int pageNo, int pageSize, string username)
         {
             int userId;
-            var query = _session.Query<User>()
+            var query = _session.Query<UserAgency>()
                                 .Where(u => u.Email.Equals(username));
 
             userId = query.ToFuture().SingleOrDefault().UserId;
@@ -164,7 +164,7 @@ namespace EmploymentAgency.Core
         public int TotalMyVacancies(string username)
         {
             int userId;
-            var query = _session.Query<User>()
+            var query = _session.Query<UserAgency>()
                                 .Where(u => u.Email.Equals(username));
 
             userId = query.ToFuture().SingleOrDefault().UserId;
@@ -184,7 +184,7 @@ namespace EmploymentAgency.Core
         private void AddVacancyMSSQL(Vacancy vacancy, string username)
         {
             int userId;
-            var query = _session.Query<User>()
+            var query = _session.Query<UserAgency>()
                                 .Where(u => u.Email.Equals(username));
 
             userId = query.ToFuture().Single().UserId;

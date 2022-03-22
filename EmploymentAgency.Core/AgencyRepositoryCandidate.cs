@@ -97,7 +97,7 @@ namespace EmploymentAgency.Core
         public IList<Candidate> MyCandidates(int pageNo, int pageSize, string username)
         {
             int userId;
-            var query = _session.Query<User>()
+            var query = _session.Query<UserAgency>()
                                 .Where(u => u.Email.Equals(username));
 
             userId = query.ToFuture().Single().UserId;
@@ -116,7 +116,7 @@ namespace EmploymentAgency.Core
         public int TotalMyCandidates(string username)
         {
             int userId;
-            var query = _session.Query<User>()
+            var query = _session.Query<UserAgency>()
                                 .Where(u => u.Email.Equals(username));
 
             userId = query.ToFuture().Single().UserId;

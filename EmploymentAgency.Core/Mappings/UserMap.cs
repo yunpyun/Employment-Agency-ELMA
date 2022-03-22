@@ -8,7 +8,7 @@ using EmploymentAgency.Core.Objects;
 
 namespace EmploymentAgency.Core.Mappings
 {
-    class UserMap : ClassMap<User>
+    class UserMap : ClassMap<UserAgency>
     {
         public UserMap()
         {

@@ -15,6 +15,15 @@ namespace EmploymentAgency.Core
         /// <param name="login">Логин (почта) пользователя</param>
         /// <param name="pwd">Пароль пользователя</param>
         /// <returns>Объект пользователь или null</returns>
-        User User(string login, string pwd);
+        UserAgency User(string login, string pwd);
+
+        /// <summary>
+        /// Используется для возвращения объекта пользователь или null, если пользователя с указанным email нет в системе
+        /// </summary>
+        /// <param name="login">Логин (почта) пользователя</param>
+        /// <returns>Объект пользователь или null</returns>
+        UserAgency UserForRegistration(string login);
+
+        void AddUser(UserAgency user);
     }
 }
