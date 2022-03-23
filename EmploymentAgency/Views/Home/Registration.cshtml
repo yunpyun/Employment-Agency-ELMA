@@ -54,6 +54,19 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(model => model.Role, new { @class = "control-label col-md-2" })
+        <br />
+        <div class="col-md-10">
+            @Html.RadioButtonFor(m => m.Role.Name, "Кандидат", new { id = "candidate" })
+            @Html.Label("candidate", "Кандидат")
+            <br />
+            @Html.RadioButtonFor(m => m.Role.Name, "Работодатель", new { id = "employer" })
+            @Html.Label("employer", "Работодатель")
+            @Html.ValidationMessageFor(model => model.Role)
+        </div>
+    </div>
+
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Зарегистрироваться" class="form-control-login-btn" />
         </div>

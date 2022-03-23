@@ -2,12 +2,28 @@
 
 @{
     ViewBag.Title = "UserProfile";
+    var action = ((string)ViewContext.RouteData.Values["Action"]).ToLower();
 }
 
 <div id="content">
     <div class="user-profile">
-        <div class="row">
 
+        @*<div class="sidebar">
+            <div>Menu Item 1</div>
+            <div>Menu Item 2</div>
+            <div>Menu Item 3</div>
+        </div>*@
+
+        @Html.Partial("_UserProfileMenu")
+
+        @*<div class="sidebar">
+            <ul id="side">
+                <li class="@(new[] { "userprofile"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Профиль", "UserProfile", "Home")</li>
+                <li class="@(new[] { "users"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Пользователи", "Users", "Home")</li>
+            </ul>
+        </div>*@
+
+        <div class="row">
             <div class="user-title">
                 @if (Model.MiddleName != null)
                 {
@@ -18,7 +34,6 @@
                     <h1>@Model.LastName @Model.FirstName </h1>
                 }
             </div>
-
         </div>
 
         @*<div class="user-firstname">
@@ -38,6 +53,20 @@
 
         <div class="user-login">
             Логин: @Model.Email
+        </div>
+
+        <div class="user-password">
+            Пароль: @Model.Password
+        </div>
+
+        <div class="user-role">
+            Роль: @Model.Role.Name
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Редактировать" class="form-control-login-btn" />
+            </div>
         </div>
 
         <br />

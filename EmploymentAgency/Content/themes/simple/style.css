@@ -557,3 +557,53 @@ table {
     }
 
 
+/*.sidebar {
+    height: 200px;
+    width: 150px;
+    top: 0;
+    right: 0;
+    background: #29415D url(images/menu.png) repeat-y;
+}
+
+    .sidebar div {
+        padding: 8px;
+        font-size: 24px;
+        display: block;
+    }*/
+
+.sidebar {
+    height: 200px;
+    width: 200px;
+    top: 0;
+    right: 0;
+    background: #29415D;
+}
+
+ul#side, ul#side li {
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+    ul#side li {
+        list-style: none;
+    }
+
+        ul#side li a {
+            float: left;
+            letter-spacing: 0.1em;
+            font: normal 100% 'lucida sans unicode', arial, sans-serif;
+            display: block;
+            height: 37px;
+            padding: 29px 26px 6px 26px;
+            text-align: center;
+            color: #FFF;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: transparent;
+        }
+
+            ul#side li a:hover, ul#side li.selected a, ul#side li.selected a:hover {
+                color: #FFF;
+                background: #1C2C3E url(images/menu_select.png) repeat-x;
+            }

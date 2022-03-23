@@ -144,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ListCandidatesViewModel.cs" />
+    <Compile Include="Models\ListUsersViewModel.cs" />
     <Compile Include="Models\ListVacanciesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -206,6 +207,9 @@
     <Content Include="Views\AgencyCandidate\Candidate.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\UserProfile.cshtml" />
+    <Content Include="Views\Home\ListUsers.cshtml" />
+    <Content Include="Views\Shared\_UserTemplate.cshtml" />
+    <Content Include="Views\Shared\_UserProfileMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

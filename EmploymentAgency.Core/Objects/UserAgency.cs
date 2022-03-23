@@ -37,6 +37,8 @@ namespace EmploymentAgency.Core.Objects
         public virtual string LastName
         { get; set; }
 
+        [Required]
+        [Display(Name = "Роль")]
         public virtual Role Role
         { get; set; }
 

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using EmploymentAgency.Core;
 using EmploymentAgency.Core.Objects;
 using System.Web.Security;
+using EmploymentAgency.Models;
 
 namespace EmploymentAgency.Controllers
 {
@@ -34,6 +35,7 @@ namespace EmploymentAgency.Controllers
 
             ModelState.Remove("FirstName");
             ModelState.Remove("LastName");
+            ModelState.Remove("Role");
 
             if (ModelState.IsValid)
             {
@@ -93,6 +95,14 @@ namespace EmploymentAgency.Controllers
             var user_return = _agencyRepositoryUser.UserForRegistration(username);
 
             return View(user_return);
+        }
+
+        public ViewResult Users()
+        {
+            var viewModel = new ListUsersViewModel(_agencyRepositoryUser);
+
+            ViewBag.Title = "Все пользователи";
+            return View("ListUsers", viewModel);
         }
     }
 }

@@ -1,0 +1,22 @@
+﻿@model EmploymentAgency.Models.ListUsersViewModel
+
+<div id="content">
+
+    @Html.Partial("_UserProfileMenu")
+
+    <h1>@ViewBag.Title</h1>
+
+    @if (Model.Users.Count > 0)
+    {
+        foreach (var user in Model.Users)
+        {
+            @Html.Partial("_UserTemplate", user)
+        }
+    }
+    else
+    {
+        <p>Пользователи не найдены!</p>
+    }
+
+</div>
+

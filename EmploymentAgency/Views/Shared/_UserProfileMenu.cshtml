@@ -1,0 +1,11 @@
+﻿
+@{
+    var action = ((string)ViewContext.RouteData.Values["Action"]).ToLower();
+}
+
+<div class="sidebar">
+    <ul id="side">
+        <li class="@(new[] { "userprofile"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Профиль", "UserProfile", "Home")</li>
+        <li class="@(new[] { "users"}.Contains(action) ? "selected" : "")">@Html.ActionLink("Пользователи", "Users", "Home")</li>
+    </ul>
+</div>

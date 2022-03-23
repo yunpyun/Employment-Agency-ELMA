@@ -9,6 +9,8 @@ namespace EmploymentAgency.Core
 {
     public interface IAgencyRepositoryUser
     {
+        IList<UserAgency> Users();
+
         /// <summary>
         /// Используется для возвращения объекта пользователь или null, если пользователя с указанными кредами нет в системе
         /// </summary>
@@ -16,6 +18,8 @@ namespace EmploymentAgency.Core
         /// <param name="pwd">Пароль пользователя</param>
         /// <returns>Объект пользователь или null</returns>
         UserAgency User(string login, string pwd);
+
+        int TotalUsers();
 
         /// <summary>
         /// Используется для возвращения объекта пользователь или null, если пользователя с указанным email нет в системе
