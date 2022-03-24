@@ -38,6 +38,12 @@ namespace EmploymentAgency
                 );
 
             routes.MapRoute(
+                "UserProfileEdit",
+                "UserProfileEdit",
+                new { controller = "Home", action = "UserProfileEdit" }
+                );
+
+            routes.MapRoute(
                 "Users",
                 "Users",
                 new { controller = "Home", action = "Users" }

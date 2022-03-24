@@ -26,6 +26,8 @@ namespace EmploymentAgency.Core.Mappings
 
             References(x => x.Role).Column("Role").Not.Nullable();
 
+            References(x => x.RoleWanted).Column("RoleWanted").Not.Nullable();
+
             HasMany(x => x.Candidates)
                 .Inverse()
                 .Cascade.All()

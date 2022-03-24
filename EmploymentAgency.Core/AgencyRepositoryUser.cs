@@ -57,11 +57,38 @@ namespace EmploymentAgency.Core
         public void AddUser(UserAgency user)
         {
             var role = _session.Query<Role>()
+                                .Where(r => r.Name.Equals(user.RoleWanted.Name))
+                                .ToFuture().SingleOrDefault();
+
+            _session.CreateSQLQuery("exec proc_AddUser :pEmail, :pPassword, :pFirstName, :pMiddleName, :pLastName, :pRole, :pRoleWanted")
+                    .AddEntity(typeof(UserAgency))
+                    .SetParameter("pEmail", user.Email)
+                    .SetParameter("pPassword", user.Password)
+                    .SetParameter("pFirstName", user.FirstName)
+                    .SetParameter("pMiddleName", user.MiddleName)
+                    .SetParameter("pLastName", user.LastName)
+                    .SetParameter("pRole", 3)
+                    .SetParameter("pRoleWanted", role.RoleId)
+                    .List<UserAgency>();
+        }
+
+        public UserAgency UserForEdit(int userId)
+        {
+            var query = _session.Query<UserAgency>()
+                                .Where(u => u.UserId.Equals(userId));
+
+            return query.ToFuture().SingleOrDefault();
+        }
+
+        public void EditUser(UserAgency user)
+        {
+            var role = _session.Query<Role>()
                                 .Where(r => r.Name.Equals(user.Role.Name))
                                 .ToFuture().SingleOrDefault();
 
-            _session.CreateSQLQuery("exec proc_AddUser :pEmail, :pPassword, :pFirstName, :pMiddleName, :pLastName, :pRole")
+            _session.CreateSQLQuery("exec proc_EditUser :pUserId, :pEmail, :pPassword, :pFirstName, :pMiddleName, :pLastName, :pRole")
                     .AddEntity(typeof(UserAgency))
+                    .SetParameter("pUserId", user.UserId)
                     .SetParameter("pEmail", user.Email)
                     .SetParameter("pPassword", user.Password)
                     .SetParameter("pFirstName", user.FirstName)

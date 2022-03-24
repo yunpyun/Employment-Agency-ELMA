@@ -1,6 +1,17 @@
 ﻿@model EmploymentAgency.Core.Objects.UserAgency
 
-<div class="post">
+<div class="user-template">
+
+    <div class="user-title">
+        @if (Model.MiddleName != null)
+        {
+            <p>@Model.LastName @Model.FirstName @Model.MiddleName</p>
+        }
+        else
+        {
+            <p>@Model.LastName @Model.FirstName</p>
+        }
+    </div>
 
     <div class="user-email">
         Логин: @Model.Email
@@ -13,6 +24,30 @@
     <div class="user-role">
         Роль: @Model.Role.Name
     </div>
+
+    @if (Model.RoleWanted.Name != Model.Role.Name)
+    {
+        <div class="user-role-wanted">
+            Желаемая роль: @Model.RoleWanted.Name
+        </div>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Редактировать" class="form-control-login-btn" onclick="location.href='@Url.Action("UserProfileEdit","Home", new { username = Model.Email })'" />
+        </div>
+    </div>
+
+    @if (Model.RoleWanted.Name != Model.Role.Name)
+    {
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Утвердить роль" class="form-control-login-btn" onclick="location.href='@Url.Action("UserProfileEdit","Home", new { username = Model.Email })'" />
+            </div>
+        </div>
+    }
+
+    <hr align="center" width="50%" size="2" color="Grey" />
 
     <br />
 

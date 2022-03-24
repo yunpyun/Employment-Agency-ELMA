@@ -20,6 +20,11 @@ namespace EmploymentAgency.Core.Mappings
                 .Inverse()
                 .Cascade.All()
                 .KeyColumn("Role");
+
+            HasMany(x => x.UserAgencyWanted)
+               .Inverse()
+               .Cascade.All()
+               .KeyColumn("RoleWanted");
         }
     }
 }

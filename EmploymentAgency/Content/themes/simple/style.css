@@ -544,12 +544,26 @@ table {
         padding: 5px;
     }
 
-.form-group-login {
-    margin-bottom: 15px;
-    width: 30%;
-    height: 15px;
-    display: inline-block;
-}
+    .form-group .form-control-user-profile {
+        width: 25%;
+        height: 15px;
+        padding: 5px;
+        background: #DDD;
+    }
+
+        .form-group .form-control-user-profile-edit {
+            width: 25%;
+            height: 15px;
+            padding: 5px;
+            background: none;
+        }
+
+    .form-group-login {
+        margin-bottom: 15px;
+        width: 30%;
+        height: 15px;
+        display: inline-block;
+    }
 
     .form-group-login .form-control-login {
         height: 15px;
@@ -607,3 +621,7 @@ ul#side, ul#side li {
                 color: #FFF;
                 background: #1C2C3E url(images/menu_select.png) repeat-x;
             }
+
+.user-template .user-role-wanted {
+    color: red;
+}

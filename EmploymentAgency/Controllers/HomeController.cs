@@ -35,7 +35,7 @@ namespace EmploymentAgency.Controllers
 
             ModelState.Remove("FirstName");
             ModelState.Remove("LastName");
-            ModelState.Remove("Role");
+            ModelState.Remove("RoleWanted");
 
             if (ModelState.IsValid)
             {
@@ -104,5 +104,42 @@ namespace EmploymentAgency.Controllers
             ViewBag.Title = "Все пользователи";
             return View("ListUsers", viewModel);
         }
+
+        public ViewResult UserProfileEdit(string username)
+        {
+            string current_username = System.Web.HttpContext.Current.User.Identity.Name;
+
+            var user_return = _agencyRepositoryUser.UserForRegistration(username);
+            var current_user_return = _agencyRepositoryUser.UserForRegistration(current_username);
+
+            ViewBag.IsAdmin = current_user_return.Role.Name;
+
+            return View(user_return);
+        }
+
+        [HttpPost]
+        public ActionResult UserProfileEdit(UserAgency user)
+        {
+            var userReturn = _agencyRepositoryUser.UserForEdit(user.UserId);
+
+            ModelState.Remove("RoleWanted");
+
+            if (ModelState.IsValid)
+            {
+                if (userReturn == null)
+                {
+                    ModelState.AddModelError("", "Произошла ошибка, попробуйте позже");
+                }
+                else
+                {
+                    _agencyRepositoryUser.EditUser(user);
+                    return RedirectToAction("UserProfile", "Home");
+                }
+            }
+
+            return View(userReturn);
+        }
+
+
     }
 }

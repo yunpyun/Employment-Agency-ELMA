@@ -210,6 +210,7 @@
     <Content Include="Views\Home\ListUsers.cshtml" />
     <Content Include="Views\Shared\_UserTemplate.cshtml" />
     <Content Include="Views\Shared\_UserProfileMenu.cshtml" />
+    <Content Include="Views\Home\UserProfileEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

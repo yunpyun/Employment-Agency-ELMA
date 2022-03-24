@@ -29,5 +29,9 @@ namespace EmploymentAgency.Core
         UserAgency UserForRegistration(string login);
 
         void AddUser(UserAgency user);
+
+        UserAgency UserForEdit(int userId);
+
+        void EditUser(UserAgency user);
     }
 }
