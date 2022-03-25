@@ -33,5 +33,7 @@ namespace EmploymentAgency.Core
         UserAgency UserForEdit(int userId);
 
         void EditUser(UserAgency user);
+
+        void ApproveRole(UserAgency user);
     }
 }

@@ -252,7 +252,7 @@ ul#menu, ul#menu li {
 
         #content ul li {
             list-style-type: none;
-            background: url(images/bullet.png) no-repeat;
+            /*background: url(images/bullet.png) no-repeat;*/
             margin: 0 0 6px 0;
             padding: 0 0 4px 25px;
             line-height: 1.5em;
@@ -586,10 +586,12 @@ table {
     }*/
 
 .sidebar {
-    height: 200px;
+    height: 144px; /*(37 + 29 + 6) x 2, т.к. два пункта меню*/
     width: 200px;
     top: 0;
     right: 0;
+    margin-top: 20px;
+    padding: 0;
     background: #29415D;
 }
 
@@ -615,6 +617,7 @@ ul#side, ul#side li {
             text-transform: uppercase;
             text-decoration: none;
             background: transparent;
+            width: 148px; /*200px - 26px - 26px (from padding)*/
         }
 
             ul#side li a:hover, ul#side li.selected a, ul#side li.selected a:hover {
@@ -625,3 +628,4 @@ ul#side, ul#side li {
 .user-template .user-role-wanted {
     color: red;
 }
+

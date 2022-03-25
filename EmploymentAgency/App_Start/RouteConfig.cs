@@ -44,9 +44,15 @@ namespace EmploymentAgency
                 );
 
             routes.MapRoute(
-                "Users",
-                "Users",
-                new { controller = "Home", action = "Users" }
+                "ListUsers",
+                "ListUsers",
+                new { controller = "Home", action = "ListUsers" }
+                );
+
+            routes.MapRoute(
+                "ApproveRoleUser",
+                "ApproveRoleUser",
+                new { controller = "Home", action = "ApproveRoleUser" }
                 );
 
             routes.MapRoute(

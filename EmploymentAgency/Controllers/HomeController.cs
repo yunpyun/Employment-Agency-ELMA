@@ -97,7 +97,7 @@ namespace EmploymentAgency.Controllers
             return View(user_return);
         }
 
-        public ViewResult Users()
+        public ViewResult ListUsers()
         {
             var viewModel = new ListUsersViewModel(_agencyRepositoryUser);
 
@@ -140,6 +140,15 @@ namespace EmploymentAgency.Controllers
             return View(userReturn);
         }
 
+        public ViewResult ApproveRoleUser(string username)
+        {
+            var user_return = _agencyRepositoryUser.UserForRegistration(username);
+            _agencyRepositoryUser.ApproveRole(user_return);
 
+            var viewModel = new ListUsersViewModel(_agencyRepositoryUser);
+
+            ViewBag.Title = "Все пользователи";
+            return View("ListUsers", viewModel);
+        }
     }
 }

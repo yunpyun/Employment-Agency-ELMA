@@ -36,7 +36,7 @@ namespace EmploymentAgency.Core
             var vacancyIds = vacancies.Select(v => v.VacancyId).ToList();
 
             return _session.Query<Vacancy>()
-                  .Where(v => vacancyIds.Contains(v.VacancyId) && v.Status.Name == "Активный")
+                  .Where(v => vacancyIds.Contains(v.VacancyId))
                   .OrderByDescending(v => v.VacancyPostedOn)
                   .FetchMany(v => v.Skills)
                   .ToList();

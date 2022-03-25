@@ -42,7 +42,7 @@
     {
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Утвердить роль" class="form-control-login-btn" onclick="location.href='@Url.Action("UserProfileEdit","Home", new { username = Model.Email })'" />
+                <input type="submit" value="Утвердить роль" class="form-control-login-btn" onclick="location.href='@Url.Action("ApproveRoleUser","Home", new { username = Model.Email })'" />
             </div>
         </div>
     }

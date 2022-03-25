@@ -97,5 +97,25 @@ namespace EmploymentAgency.Core
                     .SetParameter("pRole", role.RoleId)
                     .List<UserAgency>();
         }
+
+        public void ApproveRole(UserAgency user)
+        {
+            user.Role = user.RoleWanted;
+
+            var role = _session.Query<Role>()
+                                .Where(r => r.Name.Equals(user.Role.Name))
+                                .ToFuture().SingleOrDefault();
+
+            _session.CreateSQLQuery("exec proc_EditUser :pUserId, :pEmail, :pPassword, :pFirstName, :pMiddleName, :pLastName, :pRole")
+                    .AddEntity(typeof(UserAgency))
+                    .SetParameter("pUserId", user.UserId)
+                    .SetParameter("pEmail", user.Email)
+                    .SetParameter("pPassword", user.Password)
+                    .SetParameter("pFirstName", user.FirstName)
+                    .SetParameter("pMiddleName", user.MiddleName)
+                    .SetParameter("pLastName", user.LastName)
+                    .SetParameter("pRole", role.RoleId)
+                    .List<UserAgency>();
+        }
     }
 }
