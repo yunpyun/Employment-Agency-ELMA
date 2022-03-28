@@ -31,7 +31,7 @@ namespace EmploymentAgency.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(UserAgency user)
         {
-            var user_return = _agencyRepositoryUser.User(user.Email, user.Password);
+            var userReturn = _agencyRepositoryUser.User(user.Email, user.Password);
 
             ModelState.Remove("FirstName");
             ModelState.Remove("LastName");
@@ -39,9 +39,10 @@ namespace EmploymentAgency.Controllers
 
             if (ModelState.IsValid)
             {
-                if (user_return != null)
+                if (userReturn != null)
                 {
                     FormsAuthentication.SetAuthCookie(user.Email, true);
+                    AddRoleToUser(userReturn);
                     return RedirectToAction("Vacancies", "Agency");
                 }
                 else
@@ -50,7 +51,7 @@ namespace EmploymentAgency.Controllers
                 }
             }
 
-            return View(user_return);
+            return View(userReturn);
         }
 
         public ActionResult Logout()
@@ -70,10 +71,10 @@ namespace EmploymentAgency.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Registration(UserAgency user)
         {
-            var user_return = _agencyRepositoryUser.UserForRegistration(user.Email);
+            var userReturn = _agencyRepositoryUser.UserForRegistration(user.Email);
             if (ModelState.IsValid)
             {
-                if (user_return != null)
+                if (userReturn != null)
                 {
                     ModelState.AddModelError("", "Уже есть пользователь с таким email");
                 }
@@ -81,11 +82,12 @@ namespace EmploymentAgency.Controllers
                 {
                     _agencyRepositoryUser.AddUser(user);
                     FormsAuthentication.SetAuthCookie(user.Email, true);
+                    AddRoleToUser(user);
                     return RedirectToAction("Vacancies", "Agency");
                 }
             }
 
-            return View(user_return);
+            return View(userReturn);
         }
 
         public ViewResult UserProfile()
@@ -97,6 +99,7 @@ namespace EmploymentAgency.Controllers
             return View(user_return);
         }
 
+        [Authorize(Roles = "Администратор")]
         public ViewResult ListUsers()
         {
             var viewModel = new ListUsersViewModel(_agencyRepositoryUser);
@@ -149,6 +152,30 @@ namespace EmploymentAgency.Controllers
 
             ViewBag.Title = "Все пользователи";
             return View("ListUsers", viewModel);
+        }
+
+        public static void CreateUserRole(string roleName)
+        {
+            string roleNameAdmin = "Администратор";
+            if (!System.Web.Security.Roles.RoleExists(roleNameAdmin))
+            {
+                System.Web.Security.Roles.CreateRole(roleNameAdmin);
+            }
+
+            if (!System.Web.Security.Roles.RoleExists(roleName))
+            {
+                System.Web.Security.Roles.CreateRole(roleName);
+            }
+        }
+
+        public static void AddRoleToUser(UserAgency user)
+        {
+            CreateUserRole(user.Role.Name);
+
+            if (System.Web.HttpContext.Current.User.IsInRole(user.Role.Name))
+            {
+                System.Web.Security.Roles.AddUserToRole(user.Email, user.Role.Name);
+            }
         }
     }
 }

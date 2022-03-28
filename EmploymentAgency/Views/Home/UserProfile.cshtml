@@ -57,6 +57,19 @@
             </div>
         </div>
 
+        @if (System.Web.HttpContext.Current.User.IsInRole("Администратор"))
+        {
+            <p>Системная роль: Администратор</p>
+        }
+        @if (System.Web.HttpContext.Current.User.IsInRole("Работодатель"))
+        {
+            <p>Системная роль: Работодатель</p>
+        }
+        @if (System.Web.HttpContext.Current.User.IsInRole("Кандидат"))
+        {
+            <p>Системная роль: Кандидат</p>
+        }
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Редактировать" class="form-control-login-btn" onclick="location.href='@Url.Action("UserProfileEdit","Home", new { username = Model.Email })'" />
