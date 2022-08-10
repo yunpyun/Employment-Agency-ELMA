@@ -125,5 +125,37 @@ namespace EmploymentAgency.Core
                         .Where(c => c.Author.UserId == userId)
                         .Count();
         }
+
+        /// <inheritdoc/>
+        public void AddCandidate(Candidate candidate, string username)
+        {
+            AddCandidateMSSQL(candidate, username);
+        }
+
+        // создание вакансии с помощью вызова хранимой процедуры из БД
+        private void AddCandidateMSSQL(Candidate candidate, string username)
+        {
+            int userId;
+            var query = _session.Query<UserAgency>()
+                                .Where(u => u.Email.Equals(username));
+
+            userId = query.ToFuture().Single().UserId;
+
+            _session.CreateSQLQuery("exec proc_AddCandidate :pFirstName, :pMiddleName, :pLastName, :pBirthday, :pPhoto, :pPhone, :pEmail, :pStartWork, :pCandidateTitle, :pDescription, :pAuthor, :pCandidatePostedOn")
+                    .AddEntity(typeof(Candidate))
+                    .SetParameter("pFirstName", candidate.FirstName)
+                    .SetParameter("pMiddleName", candidate.MiddleName)
+                    .SetParameter("pLastName", candidate.LastName)
+                    .SetParameter("pBirthday", candidate.Birthday)
+                    .SetParameter("pPhoto", candidate.Photo)
+                    .SetParameter("pPhone", candidate.Phone)
+                    .SetParameter("pEmail", candidate.Email)
+                    .SetParameter("pStartWork", candidate.StartWork)
+                    .SetParameter("pCandidateTitle", candidate.Title)
+                    .SetParameter("pDescription", candidate.Description)
+                    .SetParameter("pAuthor", userId)
+                    .SetParameter("pCandidatePostedOn", DateTime.Now)
+                    .List<Candidate>();
+        }
     }
 }

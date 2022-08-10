@@ -211,6 +211,7 @@
     <Content Include="Views\Shared\_UserTemplate.cshtml" />
     <Content Include="Views\Shared\_UserProfileMenu.cshtml" />
     <Content Include="Views\Home\UserProfileEdit.cshtml" />
+    <Content Include="Views\AgencyCandidate\CreateCandidate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

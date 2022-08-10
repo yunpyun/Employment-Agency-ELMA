@@ -73,5 +73,11 @@ namespace EmploymentAgency.Core
         /// <returns>Количество резюме текущего пользователя</returns>
         int TotalMyCandidates(string username);
 
+        /// <summary>
+        /// Используется для создания нового резюме
+        /// </summary>
+        /// <param name="candidate">Объект резюме</param>
+        /// <param name="username">Имя текущего пользователя</param>
+        void AddCandidate(Candidate candidate, string username);
     }
 }

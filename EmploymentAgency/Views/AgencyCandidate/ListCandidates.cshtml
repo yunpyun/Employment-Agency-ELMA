@@ -2,23 +2,46 @@
 
 <div id="content">
 
-    <h1>@ViewBag.Title</h1>
+    @*<h1>@ViewBag.Title</h1>*@
 
-    @Html.Partial("_CandidatePager", Model)
+    <div class="candidate-row">
+        <div class="candidate-title-page">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
 
-    @if (Model.Candidates.Count > 0)
-    {
-        foreach (var candidate in Model.Candidates)
+    <div class="fresh-candidate">
+        @if (ViewBag.Title == "Свежие резюме")
         {
-            @Html.Partial("_CandidateTemplate", candidate)
-        }
-    }
-    else
-    {
-        <p>Резюме не найдены!</p>
-    }
+            <div class="candidate-row">
+                <div class="button-new-candidate">
+                    @Html.ActionLink("Создать свое резюме", "CreateCandidate", null, new { @class = "btn-primary" })
+                </div>
+            </div>
 
-    @Html.Partial("_CandidatePager", Model)
+            <div style="clear: both;"></div>
+        }
+    </div>
+
+    <div style="clear: both;"></div>
+
+    <div class="list-candidate">
+        @Html.Partial("_CandidatePager", Model)
+
+        @if (Model.Candidates.Count > 0)
+        {
+            foreach (var candidate in Model.Candidates)
+            {
+                @Html.Partial("_CandidateTemplate", candidate)
+            }
+        }
+        else
+        {
+            <p>Резюме не найдены!</p>
+        }
+
+        @Html.Partial("_CandidatePager", Model)
+    </div>
 
 </div>
 

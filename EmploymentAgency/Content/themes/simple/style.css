@@ -425,7 +425,16 @@ table {
     float: left;
 }
 
+.candidate-title-page {
+    float: left;
+}
+
 .button-new-vacancy {
+    float: right;
+    margin-top: 10px;
+}
+
+.button-new-candidate {
     float: right;
     margin-top: 10px;
 }

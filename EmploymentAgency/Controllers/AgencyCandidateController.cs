@@ -58,5 +58,24 @@ namespace EmploymentAgency.Controllers
             ViewBag.Title = "Мои резюме";
             return View("ListCandidates", viewModel);
         }
+
+        public ViewResult CreateCandidate()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateCandidate(Candidate candidate)
+        {
+            string username = System.Web.HttpContext.Current.User.Identity.Name;
+
+            if (ModelState.IsValid)
+            {
+                _agencyRepositoryCandidate.AddCandidate(candidate, username);
+
+                return RedirectToAction("Vacancies");
+            }
+            return View();
+        }
     }
 }
