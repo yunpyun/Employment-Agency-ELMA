@@ -29,6 +29,7 @@ namespace EmploymentAgency.Core.Objects
         public virtual string LastName
         { get; set; }
 
+        //[DataType(DataType.Date)]
         [Required(ErrorMessage = "Поле \"День Рождения\" обязательно к заполнению")]
         [Display(Name = "День Рождения*")]
         public virtual DateTime Birthday
@@ -61,6 +62,7 @@ namespace EmploymentAgency.Core.Objects
         public virtual string Title
         { get; set; }
 
+        [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Поле \"Описание\" обязательно к заполнению")]
         [StringLength(4000, MinimumLength = 3, ErrorMessage = "В поле \"Описание\" должно быть не менее 3 и не более 4000 символов")]
         [Display(Name = "Описание*")]

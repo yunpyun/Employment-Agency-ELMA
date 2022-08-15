@@ -73,7 +73,7 @@ namespace EmploymentAgency.Controllers
             {
                 _agencyRepositoryCandidate.AddCandidate(candidate, username);
 
-                return RedirectToAction("Vacancies");
+                return RedirectToAction("Candidates");
             }
             return View();
         }
